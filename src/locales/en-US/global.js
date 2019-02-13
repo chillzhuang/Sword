@@ -1,0 +1,16 @@
+export default {
+  'table.columns.action': 'action',
+  'button.add.name': 'add',
+  'button.submit.name': 'submit',
+  'button.view.name': 'view',
+  'button.edit.name': 'edit',
+  'button.delete.name': 'delete',
+  'button.search.name': 'search',
+  'button.reset.name': 'reset',
+  'button.recycle.name': 'recycle',
+  'button.recovery.name': 'recovery',
+  'button.expand.name': 'expand',
+  'button.role.name': 'grant role',
+  'button.reset-password.name': 'reset password',
+  'button.back.name': 'back',
+};

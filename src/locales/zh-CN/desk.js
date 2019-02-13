@@ -1,0 +1,16 @@
+export default {
+  'desk.notice.title': '通知标题',
+  'desk.notice.title.placeholder': '请输入通知标题',
+  'desk.notice.title.validation': '请输入通知标题',
+  'desk.notice.category': '通知类型',
+  'desk.notice.category.placeholder': '请选择通知类型',
+  'desk.notice.category.validation': '请选择通知类型',
+  'desk.notice.date': '通知日期',
+  'desk.notice.date.placeholder': '请选择通知日期',
+  'desk.notice.date.validation': '请选择通知日期',
+  'desk.notice.date.start': '开始日期',
+  'desk.notice.date.end': '结束日期',
+  'desk.notice.content': '通知内容',
+  'desk.notice.content.placeholder': '请输入通知内容',
+  'desk.notice.content.validation': '请输入通知内容',
+};
