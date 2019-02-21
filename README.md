@@ -1,8 +1,20 @@
 ## 简介
 Sword 是 [SpringBlade](https://gitee.com/smallc/SpringBlade)前端UI项目，基于react 、ant design、dva，用于快速构建系统中后台业务。
 
+## 官网
+* 官网地址：[https://bladex.vip](https://bladex.vip)
+
 ## 在线演示
-演示地址：[http://sword.bladex.vip](http://sword.bladex.vip)
+* Sword演示地址：[https://sword.bladex.vip](https://sword.bladex.vip)
+* Saber演示地址：[https://saber.avue.top](https://saber.avue.top)
+
+## 后端项目地址
+* [Gitee地址](https://gitee.com/smallc/SpringBlade)
+* [Github地址](https://github.com/chillzhuang/SpringBlade)
+
+## 前端项目地址
+* [Sword--基于React](https://gitee.com/smallc/Sword)
+* [Saber--基于Vue](https://gitee.com/smallc/Saber)
 
 ## 特性
 
@@ -47,46 +59,71 @@ $ npm run start:no-mock
 # 访问 http://localhost:88       
 ```
 
-# 界面一览
+# 界面
+## Sword界面一览
 <table>
     <tr>
-        <td><img src="https://raw.githubusercontent.com/chillzhuang/blade-tool/master/pic/springblade-k8s.png"/></td>
-        <td><img src="https://raw.githubusercontent.com/chillzhuang/blade-tool/master/pic/springblade-harbor.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/sword-main.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/sword-menu.png"/></td>
     </tr>
     <tr>
-        <td><img src="https://raw.githubusercontent.com/chillzhuang/blade-tool/master/pic/springblade-traefik.png"/></td>
-        <td><img src="https://raw.githubusercontent.com/chillzhuang/blade-tool/master/pic/springblade-traefik-health.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/sword-menu-edit.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/sword-menu-icon.png"/></td>
     </tr>
     <tr>
-        <td><img src="https://raw.githubusercontent.com/chillzhuang/blade-tool/master/pic/springblade-consul.png"/></td>
-        <td><img src="https://raw.githubusercontent.com/chillzhuang/blade-tool/master/pic/springblade-consul-nodes1.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/sword-role.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/sword-user.png"/></td>
     </tr>
     <tr>
-        <td><img src="https://raw.githubusercontent.com/chillzhuang/blade-tool/master/pic/springblade-admin1.png"/></td>
-        <td><img src="https://raw.githubusercontent.com/chillzhuang/blade-tool/master/pic/springblade-admin2.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/sword-dict.png "/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/sword-log.png"/></td>
     </tr>
     <tr>
-        <td><img src="https://raw.githubusercontent.com/chillzhuang/blade-tool/master/pic/springblade-swagger1.png"/></td>
-        <td><img src="https://raw.githubusercontent.com/chillzhuang/blade-tool/master/pic/springblade-swagger2.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/sword-locale-cn.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/sword-locale-us.png"/></td>
+    </tr>
+</table>
+
+## 监控界面一览
+<table>
+    <tr>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/springblade-k8s1.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/springblade-k8s2.png"/></td>
     </tr>
     <tr>
-        <td><img src="https://raw.githubusercontent.com/chillzhuang/blade-tool/master/pic/sword-main.png"/></td>
-        <td><img src="https://raw.githubusercontent.com/chillzhuang/blade-tool/master/pic/sword-menu.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/springblade-grafana.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/springblade-harbor.png"/></td>
     </tr>
     <tr>
-        <td><img src="https://raw.githubusercontent.com/chillzhuang/blade-tool/master/pic/sword-menu-edit.png"/></td>
-        <td><img src="https://raw.githubusercontent.com/chillzhuang/blade-tool/master/pic/sword-menu-icon.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/springblade-traefik.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/springblade-traefik-health.png"/></td>
     </tr>
     <tr>
-        <td><img src="https://raw.githubusercontent.com/chillzhuang/blade-tool/master/pic/sword-role.png"/></td>
-        <td><img src="https://raw.githubusercontent.com/chillzhuang/blade-tool/master/pic/sword-user.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/springblade-nacos.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/springblade-sentinel.png"/></td>
     </tr>
     <tr>
-        <td><img src="https://raw.githubusercontent.com/chillzhuang/blade-tool/master/pic/sword-dict.png "/></td>
-        <td><img src="https://raw.githubusercontent.com/chillzhuang/blade-tool/master/pic/sword-log.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/springblade-admin1.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/springblade-admin2.png"/></td>
     </tr>
     <tr>
-        <td><img src="https://raw.githubusercontent.com/chillzhuang/blade-tool/master/pic/sword-locale-cn.png"/></td>
-        <td><img src="https://raw.githubusercontent.com/chillzhuang/blade-tool/master/pic/sword-locale-us.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/springblade-swagger1.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/springblade-swagger2.png"/></td>
+    </tr>
+</table>
+
+## Saber界面一览
+<table>
+    <tr>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/saber-user.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/saber-role.png"/></td>
+    </tr>
+    <tr>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/saber-dict.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/saber-dict-select.png"/></td>
+    </tr>
+    <tr>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/saber-log.png"/></td>
+        <td><img src="https://gitee.com/smallc/SpringBlade/raw/master/pic/saber-code.png"/></td>
     </tr>
 </table>

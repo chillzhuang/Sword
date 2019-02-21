@@ -25,15 +25,17 @@ function ergodicRoutes(routes, authKey, authority) {
 }
 
 export function patchRoutes(routes) {
-  Object.keys(authRoutes).map(authKey =>
-    ergodicRoutes(routes, authKey, authRoutes[authKey].authority)
-  );
-  window.g_routes = routes;
+  if (authRoutes !== null && authRoutes !== undefined) {
+    Object.keys(authRoutes).map(authKey =>
+      ergodicRoutes(routes, authKey, authRoutes[authKey].authority)
+    );
+    window.g_routes = routes;
+  }
 }
 
 export function render(oldRender) {
   routesAuthority().then(response => {
-    if (response) {
+    if (response && response.success) {
       authRoutes = response.data;
     }
     oldRender();

@@ -8,75 +8,91 @@ function getFakeRoutes(req, res) {
       {
         path: '/desk',
         code: 'desk',
+        name: '工作台',
         source: 'desktop',
         children: [
           {
             path: '/desk/notice',
             code: 'notice',
+            name: '通知公告',
           },
         ],
       },
       {
         path: '/system',
         code: 'system',
+        name: '系统管理',
         source: 'setting',
         children: [
           {
             path: '/system/user',
             code: 'user',
+            name: '用户管理',
           },
           {
             path: '/system/dept',
             code: 'dept',
+            name: '部门管理',
           },
           {
             path: '/system/dict',
             code: 'dict',
+            name: '字典管理',
           },
           {
             path: '/system/menu',
             code: 'menu',
+            name: '菜单管理',
           },
           {
             path: '/system/role',
             code: 'role',
+            name: '角色管理',
           },
           {
             path: '/system/param',
             code: 'param',
+            name: '参数管理',
           },
         ],
       },
       {
         path: '/monitor',
         code: 'monitor',
+        name: '系统监控',
         source: 'fund',
         children: [
           {
             path: 'http://localhost/doc.html',
             target: '_blank',
             code: 'doc',
+            name: '接口文档',
           },
           {
             path: 'http://localhost:7002',
             target: '_blank',
             code: 'admin',
+            name: '服务治理',
           },
           {
             path: '/monitor/log',
             code: 'log',
+            name: '日志管理',
             children: [
               {
                 path: '/monitor/log/usual',
                 code: 'log_usual',
+                name: '通用日志',
               },
               {
                 path: '/monitor/log/api',
                 code: 'log_api',
+                name: '接口日志',
               },
               {
                 path: '/monitor/log/error',
                 code: 'log_error',
+                name: '错误日志',
               },
             ],
           },
@@ -85,11 +101,13 @@ function getFakeRoutes(req, res) {
       {
         path: '/tool',
         code: 'tool',
+        name: '在线开发',
         source: 'tool',
         children: [
           {
             path: '/tool/code',
             code: 'code',
+            name: '代码生成',
           },
         ],
       },

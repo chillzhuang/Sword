@@ -38,16 +38,16 @@ export function setRoutes(routes) {
   localStorage.setItem('sword-routes', JSON.stringify(routes));
 }
 
+export function getButtons() {
+  return JSON.parse(localStorage.getItem('sword-buttons')) || [];
+}
+
 export function getButton(code) {
   const buttons = getButtons();
   const data = buttons.filter(d => {
     return d.code === code;
   });
   return data.length === 0 ? [] : data[0].buttons;
-}
-
-export function getButtons() {
-  return JSON.parse(localStorage.getItem('sword-buttons')) || [];
 }
 
 export function setButtons(buttons) {
