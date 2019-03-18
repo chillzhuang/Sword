@@ -66,7 +66,7 @@ class NoticeAdd extends PureComponent {
               <span>{detail.categoryName}</span>
             </FormItem>
             <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.date" />}>
-              <span>{detail.date}</span>
+              <span>{detail.releaseTime}</span>
             </FormItem>
             <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.content" />}>
               <span>{detail.content}</span>

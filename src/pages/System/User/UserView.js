@@ -46,15 +46,6 @@ class UserView extends PureComponent {
       },
     };
 
-    const formAllItemLayout = {
-      labelCol: {
-        span: 4,
-      },
-      wrapperCol: {
-        span: 20,
-      },
-    };
-
     const action = (
       <Button type="primary" onClick={this.handleEdit}>
         修改
@@ -66,9 +57,14 @@ class UserView extends PureComponent {
         <Form hideRequiredMark style={{ marginTop: 8 }}>
           <Card title="基本信息" className={styles.card} bordered={false}>
             <Row gutter={24}>
-              <Col span={20}>
-                <FormItem {...formAllItemLayout} label="登录账号">
+              <Col span={10}>
+                <FormItem {...formItemLayout} label="登录账号">
                   <span>{detail.account}</span>
+                </FormItem>
+              </Col>
+              <Col span={10}>
+                <FormItem {...formItemLayout} label="所属租户">
+                  <span>{detail.tenantCode}</span>
                 </FormItem>
               </Col>
             </Row>

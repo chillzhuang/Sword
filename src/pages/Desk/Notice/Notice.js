@@ -122,7 +122,7 @@ class Notice extends PureComponent {
       },
       {
         title: formatMessage({ id: 'desk.notice.date' }),
-        dataIndex: 'date',
+        dataIndex: 'releaseTime',
       },
     ];
 

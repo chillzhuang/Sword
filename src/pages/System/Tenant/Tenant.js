@@ -2,21 +2,21 @@ import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { Button, Col, Form, Input, Row } from 'antd';
 import Panel from '../../../components/Panel';
+import { TENANT_LIST } from '../../../actions/tenant';
 import Grid from '../../../components/Sword/Grid';
-import { DEPT_LIST } from '../../../actions/dept';
 
 const FormItem = Form.Item;
 
-@connect(({ dept, loading }) => ({
-  dept,
-  loading: loading.models.dept,
+@connect(({ tenant, loading }) => ({
+  tenant,
+  loading: loading.models.tenant,
 }))
 @Form.create()
-class Dept extends PureComponent {
+class Tenant extends PureComponent {
   // ============ 查询 ===============
   handleSearch = params => {
     const { dispatch } = this.props;
-    dispatch(DEPT_LIST(params));
+    dispatch(TENANT_LIST(params));
   };
 
   // ============ 查询表单 ===============
@@ -27,18 +27,18 @@ class Dept extends PureComponent {
     return (
       <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
         <Col md={6} sm={24}>
-          <FormItem label="部门名称">
-            {getFieldDecorator('deptName')(<Input placeholder="请输入部门名称" />)}
-          </FormItem>
-        </Col>
-        <Col md={6} sm={24}>
           <FormItem label="租户编号">
-            {getFieldDecorator('tenantCode')(<Input placeholder="请输入角色名称" />)}
+            {getFieldDecorator('tenantCode')(<Input placeholder="请输入租户编号" />)}
           </FormItem>
         </Col>
         <Col md={6} sm={24}>
-          <FormItem label="部门全称">
-            {getFieldDecorator('fullName')(<Input placeholder="请输入部门全称" />)}
+          <FormItem label="租户名称">
+            {getFieldDecorator('tenantName')(<Input placeholder="请输入租户名称" />)}
+          </FormItem>
+        </Col>
+        <Col md={6} sm={24}>
+          <FormItem label="联系电话">
+            {getFieldDecorator('contactNumber')(<Input placeholder="请输入联系电话" />)}
           </FormItem>
         </Col>
         <Col>
@@ -56,30 +56,34 @@ class Dept extends PureComponent {
   };
 
   render() {
-    const code = 'dept';
+    const code = 'tenant';
 
     const {
       form,
       loading,
-      dept: { data },
+      tenant: { data },
     } = this.props;
 
     const columns = [
-      {
-        title: '部门名称',
-        dataIndex: 'deptName',
-      },
       {
         title: '租户编号',
         dataIndex: 'tenantCode',
       },
       {
-        title: '部门全称',
-        dataIndex: 'fullName',
+        title: '租户名称',
+        dataIndex: 'tenantName',
       },
       {
-        title: '排序',
-        dataIndex: 'sort',
+        title: '联系人',
+        dataIndex: 'linkman',
+      },
+      {
+        title: '联系电话',
+        dataIndex: 'contactNumber',
+      },
+      {
+        title: '联系地址',
+        dataIndex: 'address',
       },
     ];
 
@@ -98,4 +102,4 @@ class Dept extends PureComponent {
     );
   }
 }
-export default Dept;
+export default Tenant;

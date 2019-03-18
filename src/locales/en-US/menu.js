@@ -13,6 +13,7 @@ export default {
   'menu.system.menu': 'menu',
   'menu.system.role': 'role',
   'menu.system.param': 'parameter',
+  'menu.system.tenant': 'tenant',
   'menu.monitor': 'monitor',
   'menu.monitor.log': 'log',
   'menu.monitor.log.log_usual': 'usual log',

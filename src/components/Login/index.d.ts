@@ -12,6 +12,7 @@ export interface ILoginProps {
 
 export default class Login extends React.Component<ILoginProps, any> {
   public static Tab: typeof LoginTab;
+  public static TenantCode: typeof LoginItem;
   public static UserName: typeof LoginItem;
   public static Password: typeof LoginItem;
   public static Mobile: typeof LoginItem;

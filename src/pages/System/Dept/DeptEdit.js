@@ -121,12 +121,6 @@ class DeptEdit extends PureComponent {
               <Col span={10}>
                 <FormItem {...formItemLayout} label="上级部门">
                   {getFieldDecorator('parentId', {
-                    rules: [
-                      {
-                        required: true,
-                        message: '请选择上级部门',
-                      },
-                    ],
                     initialValue: detail.parentId,
                   })(
                     <TreeSelect

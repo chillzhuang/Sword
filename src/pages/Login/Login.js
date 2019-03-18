@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'dva';
 import { formatMessage, FormattedMessage } from 'umi/locale';
 import { Checkbox, Alert } from 'antd';
-import Login from '@/components/Login';
+import Login from '../../components/Login';
 import styles from './Login.less';
 
-const { Tab, UserName, Password, Submit } = Login;
+const { Tab, TenantCode, UserName, Password, Submit } = Login;
 
 @connect(({ login, loading }) => ({
   login,
@@ -80,6 +80,16 @@ class LoginPage extends Component {
               login.type === 'account' &&
               !submitting &&
               this.renderMessage(formatMessage({ id: 'app.login.message-invalid-credentials' }))}
+            <TenantCode
+              name="tenantCode"
+              placeholder={`${formatMessage({ id: 'app.login.tenantCode' })}: 000000`}
+              rules={[
+                {
+                  required: true,
+                  message: formatMessage({ id: 'validation.tenantCode.required' }),
+                },
+              ]}
+            />
             <UserName
               name="account"
               placeholder={`${formatMessage({ id: 'app.login.userName' })}: admin`}

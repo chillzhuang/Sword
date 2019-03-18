@@ -15,7 +15,7 @@ export default [
     path: '/',
     component: '../layouts/BasicLayout',
     Routes: ['src/pages/Authorized'],
-    authority: ['admin', 'user'],
+    authority: ['administrator', 'admin', 'user', 'test'],
     routes: [
       // dashboard
       { path: '/', redirect: '/dashboard/workplace' },
@@ -154,6 +154,16 @@ export default [
               { path: '/system/param/add', component: './System/Param/ParamAdd' },
               { path: '/system/param/edit/:id', component: './System/Param/ParamEdit' },
               { path: '/system/param/view/:id', component: './System/Param/ParamView' },
+            ],
+          },
+          {
+            path: '/system/tenant',
+            routes: [
+              { path: '/system/tenant', redirect: '/system/tenant/list' },
+              { path: '/system/tenant/list', component: './System/Tenant/Tenant' },
+              { path: '/system/tenant/add', component: './System/Tenant/TenantAdd' },
+              { path: '/system/tenant/edit/:id', component: './System/Tenant/TenantEdit' },
+              { path: '/system/tenant/view/:id', component: './System/Tenant/TenantView' },
             ],
           },
         ],

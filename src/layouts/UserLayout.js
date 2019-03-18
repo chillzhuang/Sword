@@ -51,10 +51,12 @@ const UserLayout = ({ children }) => (
         <div className={styles.header}>
           <Link to="/">
             <img alt="logo" className={styles.logo} src={logo} />
-            <span className={styles.title}>Ant Design</span>
+            <span className={styles.title}>Sword 企业级开发平台</span>
           </Link>
         </div>
-        <div className={styles.desc}>Ant Design 是西湖区最具影响力的 Web 设计规范</div>
+        <div className={styles.desc}>
+          Sword是SpringBlade前端UI项目，基于react 、ant design、umi、dva等流行技术栈。
+        </div>
       </div>
       {children}
     </div>

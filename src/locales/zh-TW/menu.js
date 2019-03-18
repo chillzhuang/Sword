@@ -13,6 +13,7 @@ export default {
   'menu.system.menu': '菜單管理',
   'menu.system.role': '角色管理',
   'menu.system.param': '參數管理',
+  'menu.system.tenant': '租戶管理',
   'menu.monitor': '系統監控',
   'menu.monitor.log': '日志管理',
   'menu.monitor.log.log_usual': '通用日志',

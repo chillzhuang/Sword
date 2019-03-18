@@ -30,10 +30,10 @@ export default class ToolBar extends PureComponent {
               </Button>
             ))}
           {renderLeftButton ? renderLeftButton() : null}
+          {renderRightButton ? (
+            <div style={{ float: 'right', marginRight: '20px' }}>{renderRightButton()}</div>
+          ) : null}
         </div>
-        {renderRightButton ? (
-          <div style={{ float: 'right', marginRight: '20px' }}>renderRightButton()</div>
-        ) : null}
       </div>
     );
   }

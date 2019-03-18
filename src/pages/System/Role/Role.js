@@ -117,12 +117,17 @@ class Role extends PureComponent {
 
     return (
       <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
-        <Col md={8} sm={24}>
+        <Col md={6} sm={24}>
           <FormItem label="角色名称">
             {getFieldDecorator('roleName')(<Input placeholder="请输入角色名称" />)}
           </FormItem>
         </Col>
-        <Col md={8} sm={24}>
+        <Col md={6} sm={24}>
+          <FormItem label="租户编号">
+            {getFieldDecorator('tenantCode')(<Input placeholder="请输入角色名称" />)}
+          </FormItem>
+        </Col>
+        <Col md={6} sm={24}>
           <FormItem label="角色别名">
             {getFieldDecorator('roleAlias')(<Input placeholder="请输入角色别名" />)}
           </FormItem>
@@ -174,6 +179,10 @@ class Role extends PureComponent {
       {
         title: '角色名称',
         dataIndex: 'roleName',
+      },
+      {
+        title: '租户编号',
+        dataIndex: 'tenantCode',
       },
       {
         title: '角色别名',

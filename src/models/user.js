@@ -2,6 +2,7 @@ import { message } from 'antd';
 import router from 'umi/router';
 import { USER_NAMESPACE } from '../actions/user';
 import { query as queryUsers, list, submit, detail, remove, grant } from '../services/user';
+import { select as tenants } from '../services/tenant';
 import { tree as roles } from '../services/role';
 import { tree as depts } from '../services/dept';
 import { getCurrentUser } from '../utils/authority';
@@ -19,6 +20,7 @@ export default {
     init: {
       roleTree: [],
       deptTree: [],
+      tenantList: [],
     },
     detail: {},
   },
@@ -57,9 +59,24 @@ export default {
     *fetchInit({ payload }, { call, put }) {
       const responseRole = yield call(roles, payload);
       const responseDept = yield call(depts, payload);
-      if (responseRole.success && responseDept.success) {
+      const responseTenant = yield call(tenants, payload);
+      if (responseRole.success && responseDept.success && responseTenant.success) {
         yield put({
           type: 'saveInit',
+          payload: {
+            roleTree: responseRole.data,
+            deptTree: responseDept.data,
+            tenantList: responseTenant.data,
+          },
+        });
+      }
+    },
+    *fetchChangeInit({ payload }, { call, put }) {
+      const responseRole = yield call(roles, payload);
+      const responseDept = yield call(depts, payload);
+      if (responseRole.success && responseDept.success) {
+        yield put({
+          type: 'saveChangeInit',
           payload: {
             roleTree: responseRole.data,
             deptTree: responseDept.data,
@@ -144,6 +161,14 @@ export default {
       return {
         ...state,
         init: action.payload,
+      };
+    },
+    saveChangeInit(state, action) {
+      const newState = state;
+      newState.init.roleTree = action.payload.roleTree;
+      newState.init.deptTree = action.payload.deptTree;
+      return {
+        ...newState,
       };
     },
     saveDetail(state, action) {

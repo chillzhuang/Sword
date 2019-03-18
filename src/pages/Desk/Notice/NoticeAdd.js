@@ -29,7 +29,7 @@ class NoticeAdd extends PureComponent {
 
       const params = {
         ...values,
-        date: func.format(values.date),
+        releaseTime: func.format(values.releaseTime),
       };
 
       dispatch(NOTICE_SUBMIT(params));
@@ -100,7 +100,7 @@ class NoticeAdd extends PureComponent {
               )}
             </FormItem>
             <FormItem {...formItemLayout} label={<FormattedMessage id="desk.notice.date" />}>
-              {getFieldDecorator('date', {
+              {getFieldDecorator('releaseTime', {
                 rules: [
                   {
                     required: true,

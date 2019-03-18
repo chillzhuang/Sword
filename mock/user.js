@@ -6,6 +6,7 @@ function getFakeList(req, res) {
   list.push(
     {
       id: '1',
+      tenantCode: '000000',
       account: 'admin',
       name: '超级管理员',
       realName: '管理员',
@@ -17,6 +18,7 @@ function getFakeList(req, res) {
     },
     {
       id: '2',
+      tenantCode: '000001',
       account: 'user',
       name: '系统用户',
       realName: '用户',
@@ -40,8 +42,9 @@ function getFakeList(req, res) {
 
 function getFakeDetail(req, res) {
   const json = { code: 200, success: true, msg: '操作成功' };
-  const detail = {
+  json.data = {
     id: '1',
+    tenantCode: '000000',
     account: 'admin',
     name: '超级管理员',
     realName: '管理员',
@@ -56,7 +59,6 @@ function getFakeDetail(req, res) {
     birthday: '2018-12-31 23:33:33',
     statusName: '启用',
   };
-  json.data = detail;
   return res.json(json);
 }
 

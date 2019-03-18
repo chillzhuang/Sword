@@ -5,7 +5,7 @@ import { connect } from 'dva';
 import Panel from '../../../components/Panel';
 import func from '../../../utils/Func';
 import styles from '../../../layouts/Sword.less';
-import { USER_DETAIL, USER_INIT, USER_SUBMIT } from '../../../actions/user';
+import { USER_CHANGE_INIT, USER_DETAIL, USER_INIT, USER_SUBMIT } from '../../../actions/user';
 
 const FormItem = Form.Item;
 
@@ -49,12 +49,18 @@ class UserEdit extends PureComponent {
     });
   };
 
+  handleChange = value => {
+    const { dispatch, form } = this.props;
+    form.resetFields(['roleId', 'deptId']);
+    dispatch(USER_CHANGE_INIT({ tenantCode: value }));
+  };
+
   render() {
     const {
       form: { getFieldDecorator },
       user: {
         detail,
-        init: { roleTree, deptTree },
+        init: { roleTree, deptTree, tenantList },
       },
       submitting,
     } = this.props;
@@ -70,15 +76,6 @@ class UserEdit extends PureComponent {
       },
     };
 
-    const formAllItemLayout = {
-      labelCol: {
-        span: 4,
-      },
-      wrapperCol: {
-        span: 20,
-      },
-    };
-
     const action = (
       <Button type="primary" onClick={this.handleSubmit} loading={submitting}>
         提交
@@ -90,8 +87,8 @@ class UserEdit extends PureComponent {
         <Form hideRequiredMark style={{ marginTop: 8 }}>
           <Card title="基本信息" className={styles.card} bordered={false}>
             <Row gutter={24}>
-              <Col span={20}>
-                <FormItem {...formAllItemLayout} label="登录账号">
+              <Col span={10}>
+                <FormItem {...formItemLayout} label="登录账号">
                   {getFieldDecorator('account', {
                     rules: [
                       {
@@ -101,6 +98,35 @@ class UserEdit extends PureComponent {
                     ],
                     initialValue: detail.account,
                   })(<Input placeholder="请输入登录账号" />)}
+                </FormItem>
+              </Col>
+              <Col span={10}>
+                <FormItem {...formItemLayout} label="所属租户">
+                  {getFieldDecorator('tenantCode', {
+                    rules: [
+                      {
+                        required: true,
+                        message: '请选择所属租户',
+                      },
+                    ],
+                    initialValue: detail.tenantCode,
+                  })(
+                    <Select
+                      showSearch
+                      onChange={this.handleChange}
+                      filterOption={(input, option) =>
+                        option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                      }
+                      allowClear
+                      placeholder="请选择所属租户"
+                    >
+                      {tenantList.map(d => (
+                        <Select.Option key={d.tenantCode} value={d.tenantCode}>
+                          {d.tenantName}
+                        </Select.Option>
+                      ))}
+                    </Select>
+                  )}
                 </FormItem>
               </Col>
             </Row>

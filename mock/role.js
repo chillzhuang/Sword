@@ -7,12 +7,14 @@ function getFakeList(req, res) {
     {
       id: '1',
       roleName: '超级管理员',
+      tenantCode: '000000',
       roleAlias: 'administrator',
       sort: '1',
       children: [
         {
           id: '2',
           roleName: '管理员',
+          tenantCode: '000001',
           roleAlias: 'admin',
           sort: '1',
         },
@@ -21,18 +23,21 @@ function getFakeList(req, res) {
     {
       id: '3',
       roleName: '用户',
+      tenantCode: '000002',
       roleAlias: 'user',
       sort: '2',
       children: [
         {
           id: '4',
           roleName: '普通用户',
+          tenantCode: '000003',
           roleAlias: 'user',
           sort: '1',
         },
         {
           id: '5',
           roleName: '访客',
+          tenantCode: '000004',
           roleAlias: 'guest',
           sort: '2',
         },
@@ -49,6 +54,7 @@ function getFakeDetail(req, res) {
     id: 2,
     parentId: 1,
     parentName: '超级管理员',
+    tenantCode: '000000',
     roleName: '用户',
     roleAlias: 'user',
     sort: 1,

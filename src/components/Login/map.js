@@ -3,6 +3,20 @@ import { Icon } from 'antd';
 import styles from './index.less';
 
 export default {
+  TenantCode: {
+    props: {
+      size: 'large',
+      id: 'tenantCode',
+      prefix: <Icon type="home" className={styles.prefixIcon} />,
+      placeholder: 'admin',
+    },
+    rules: [
+      {
+        required: true,
+        message: 'Please enter tenantcode!',
+      },
+    ],
+  },
   UserName: {
     props: {
       size: 'large',
