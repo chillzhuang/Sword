@@ -4,6 +4,7 @@ import { formatMessage, FormattedMessage } from 'umi/locale';
 import { Checkbox, Alert } from 'antd';
 import Login from '../../components/Login';
 import styles from './Login.less';
+import { tenantMode } from '../../defaultSettings';
 
 const { Tab, TenantCode, UserName, Password, Submit } = Login;
 
@@ -80,16 +81,18 @@ class LoginPage extends Component {
               login.type === 'account' &&
               !submitting &&
               this.renderMessage(formatMessage({ id: 'app.login.message-invalid-credentials' }))}
-            <TenantCode
-              name="tenantCode"
-              placeholder={`${formatMessage({ id: 'app.login.tenantCode' })}: 000000`}
-              rules={[
-                {
-                  required: true,
-                  message: formatMessage({ id: 'validation.tenantCode.required' }),
-                },
-              ]}
-            />
+            {tenantMode ? (
+              <TenantCode
+                name="tenantCode"
+                placeholder={`${formatMessage({ id: 'app.login.tenantCode' })}: 000000`}
+                rules={[
+                  {
+                    required: true,
+                    message: formatMessage({ id: 'validation.tenantCode.required' }),
+                  },
+                ]}
+              />
+            ) : null}
             <UserName
               name="account"
               placeholder={`${formatMessage({ id: 'app.login.userName' })}: admin`}

@@ -5,6 +5,7 @@ import { connect } from 'dva';
 import Panel from '../../../components/Panel';
 import { USER_DETAIL } from '../../../actions/user';
 import styles from '../../../layouts/Sword.less';
+import { tenantMode } from '../../../defaultSettings';
 
 const FormItem = Form.Item;
 
@@ -46,6 +47,15 @@ class UserView extends PureComponent {
       },
     };
 
+    const formAllItemLayout = {
+      labelCol: {
+        span: 4,
+      },
+      wrapperCol: {
+        span: 20,
+      },
+    };
+
     const action = (
       <Button type="primary" onClick={this.handleEdit}>
         修改
@@ -57,17 +67,21 @@ class UserView extends PureComponent {
         <Form hideRequiredMark style={{ marginTop: 8 }}>
           <Card title="基本信息" className={styles.card} bordered={false}>
             <Row gutter={24}>
-              <Col span={10}>
-                <FormItem {...formItemLayout} label="登录账号">
+              <Col span={20}>
+                <FormItem {...formAllItemLayout} label="登录账号">
                   <span>{detail.account}</span>
                 </FormItem>
               </Col>
-              <Col span={10}>
-                <FormItem {...formItemLayout} label="所属租户">
-                  <span>{detail.tenantCode}</span>
-                </FormItem>
-              </Col>
             </Row>
+            {tenantMode ? (
+              <Row gutter={24}>
+                <Col span={20}>
+                  <FormItem {...formAllItemLayout} label="所属租户">
+                    <span>{detail.tenantCode}</span>
+                  </FormItem>
+                </Col>
+              </Row>
+            ) : null}
             <Row gutter={24}>
               <Col span={10}>
                 <FormItem {...formItemLayout} label="用户昵称">

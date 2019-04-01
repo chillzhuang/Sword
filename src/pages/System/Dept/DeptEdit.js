@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { Form, Input, Card, Row, Col, Button, InputNumber, TreeSelect } from 'antd';
+import { Form, Input, Card, Row, Col, Button, InputNumber, TreeSelect, message } from "antd";
 import { connect } from 'dva';
 import Panel from '../../../components/Panel';
 import styles from '../../../layouts/Sword.less';
@@ -34,13 +34,17 @@ class DeptEdit extends PureComponent {
       },
       form,
     } = this.props;
+    const parentId = form.getFieldValue('parentId');
+    if (id === parentId.toString()) {
+      message.warn('上级部门不能选择自身!');
+      return;
+    }
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         const params = {
           id,
           ...values,
         };
-        console.log(params);
         dispatch(DEPT_SUBMIT(params));
       }
     });

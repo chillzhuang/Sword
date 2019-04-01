@@ -51,7 +51,6 @@ class MenuAdd extends PureComponent {
     const { dispatch, form } = this.props;
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log(values);
         dispatch(MENU_SUBMIT(values));
       }
     });

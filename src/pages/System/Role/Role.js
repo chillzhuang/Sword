@@ -11,6 +11,7 @@ import {
   ROLE_GRANT,
 } from '../../../actions/role';
 import { MENU_REFRESH_DATA } from '../../../actions/menu';
+import { tenantMode } from '../../../defaultSettings';
 
 const FormItem = Form.Item;
 const { TreeNode } = Tree;
@@ -177,12 +178,12 @@ class Role extends PureComponent {
 
     const columns = [
       {
-        title: '角色名称',
-        dataIndex: 'roleName',
-      },
-      {
         title: '租户编号',
         dataIndex: 'tenantCode',
+      },
+      {
+        title: '角色名称',
+        dataIndex: 'roleName',
       },
       {
         title: '角色别名',
@@ -193,6 +194,10 @@ class Role extends PureComponent {
         dataIndex: 'sort',
       },
     ];
+
+    if (!tenantMode) {
+      columns.splice(0, 1);
+    }
 
     return (
       <Panel>

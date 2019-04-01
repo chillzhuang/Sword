@@ -14,6 +14,7 @@ export default {
   'menu.system.role': 'role',
   'menu.system.param': 'parameter',
   'menu.system.tenant': 'tenant',
+  'menu.system.client': 'client',
   'menu.monitor': 'monitor',
   'menu.monitor.log': 'log',
   'menu.monitor.log.log_usual': 'usual log',

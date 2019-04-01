@@ -2,22 +2,21 @@ import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { Button, Col, Form, Input, Row } from 'antd';
 import Panel from '../../../components/Panel';
+import { CLIENT_LIST } from '../../../actions/client';
 import Grid from '../../../components/Sword/Grid';
-import { DEPT_LIST } from '../../../actions/dept';
-import { tenantMode } from '../../../defaultSettings';
 
 const FormItem = Form.Item;
 
-@connect(({ dept, loading }) => ({
-  dept,
-  loading: loading.models.dept,
+@connect(({ client, loading }) => ({
+  client,
+  loading: loading.models.client,
 }))
 @Form.create()
-class Dept extends PureComponent {
+class Client extends PureComponent {
   // ============ 查询 ===============
   handleSearch = params => {
     const { dispatch } = this.props;
-    dispatch(DEPT_LIST(params));
+    dispatch(CLIENT_LIST(params));
   };
 
   // ============ 查询表单 ===============
@@ -28,18 +27,8 @@ class Dept extends PureComponent {
     return (
       <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
         <Col md={6} sm={24}>
-          <FormItem label="部门名称">
-            {getFieldDecorator('deptName')(<Input placeholder="请输入部门名称" />)}
-          </FormItem>
-        </Col>
-        <Col md={6} sm={24}>
-          <FormItem label="租户编号">
-            {getFieldDecorator('tenantCode')(<Input placeholder="请输入角色名称" />)}
-          </FormItem>
-        </Col>
-        <Col md={6} sm={24}>
-          <FormItem label="部门全称">
-            {getFieldDecorator('fullName')(<Input placeholder="请输入部门全称" />)}
+          <FormItem label="客户端id">
+            {getFieldDecorator('clientId')(<Input placeholder="请输入客户端id" />)}
           </FormItem>
         </Col>
         <Col>
@@ -57,36 +46,40 @@ class Dept extends PureComponent {
   };
 
   render() {
-    const code = 'dept';
+    const code = 'client';
 
     const {
       form,
       loading,
-      dept: { data },
+      client: { data },
     } = this.props;
 
     const columns = [
       {
-        title: '租户编号',
-        dataIndex: 'tenantCode',
+        title: '客户端id',
+        dataIndex: 'clientId',
       },
       {
-        title: '部门名称',
-        dataIndex: 'deptName',
+        title: '客户端密钥',
+        dataIndex: 'clientSecret',
       },
       {
-        title: '部门全称',
-        dataIndex: 'fullName',
+        title: '授权范围',
+        dataIndex: 'scope',
       },
       {
-        title: '排序',
-        dataIndex: 'sort',
+        title: '授权类型',
+        dataIndex: 'authorizedGrantTypes',
+      },
+      {
+        title: '回调地址',
+        dataIndex: 'webServerRedirectUri',
+      },
+      {
+        title: '令牌过期秒数',
+        dataIndex: 'accessTokenValidity',
       },
     ];
-
-    if (!tenantMode) {
-      columns.splice(0, 1);
-    }
 
     return (
       <Panel>
@@ -103,4 +96,4 @@ class Dept extends PureComponent {
     );
   }
 }
-export default Dept;
+export default Client;

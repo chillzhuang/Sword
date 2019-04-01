@@ -166,6 +166,16 @@ export default [
               { path: '/system/tenant/view/:id', component: './System/Tenant/TenantView' },
             ],
           },
+          {
+            path: '/system/client',
+            routes: [
+              { path: '/system/client', redirect: '/system/client/list' },
+              { path: '/system/client/list', component: './System/Client/Client' },
+              { path: '/system/client/add', component: './System/Client/ClientAdd' },
+              { path: '/system/client/edit/:id', component: './System/Client/ClientEdit' },
+              { path: '/system/client/view/:id', component: './System/Client/ClientView' },
+            ],
+          },
         ],
       },
       {

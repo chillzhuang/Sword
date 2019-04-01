@@ -59,7 +59,8 @@
     "react-fittext": "^1.0.0",
     "react-media": "^1.9.2",
     "react-router-dom": "^4.3.1",
-    "roadhog-api-doc": "^1.1.2"
+    "roadhog-api-doc": "^1.1.2",
+    "js-base64": "^2.5.1"
   },
   "devDependencies": {
     "@types/react": "^16.8.1",

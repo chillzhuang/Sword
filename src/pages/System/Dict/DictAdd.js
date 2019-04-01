@@ -40,7 +40,6 @@ class DictAdd extends PureComponent {
     const { dispatch, form } = this.props;
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log(values);
         dispatch(DICT_SUBMIT(values));
       }
     });

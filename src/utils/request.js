@@ -2,6 +2,8 @@ import fetch from 'dva/fetch';
 import { notification } from 'antd';
 import router from 'umi/router';
 import hash from 'hash.js';
+import { Base64 } from 'js-base64';
+import { clientId, clientSecret } from '../defaultSettings';
 import { getToken, removeAll } from './authority';
 
 const codeMessage = {
@@ -113,12 +115,18 @@ export default function request(url, option) {
   };
   const newOptions = { ...defaultOptions, ...options };
 
-  // 将Token放至请求头
+  newOptions.headers = {
+    ...newOptions.headers,
+    // 客户端认证
+    Authorization: `Basic ${Base64.encode(`${clientId}:${clientSecret}`)}`,
+  };
+
   const token = getToken();
   if (token) {
     newOptions.headers = {
       ...newOptions.headers,
-      'blade-auth': token,
+      // token鉴权
+      'Blade-Auth': token,
     };
   }
 
