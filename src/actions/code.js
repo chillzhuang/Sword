@@ -7,6 +7,13 @@ export function CODE_LIST(payload) {
   };
 }
 
+export function CODE_INIT() {
+  return {
+    type: `${CODE_NAMESPACE}/fetchInit`,
+    payload: { code: 'yes_no' },
+  };
+}
+
 export function CODE_DETAIL(id) {
   return {
     type: `${CODE_NAMESPACE}/fetchDetail`,

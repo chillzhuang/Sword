@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import { formatMessage, FormattedMessage } from 'umi/locale';
-import { Checkbox, Alert } from 'antd';
+import { Checkbox, Alert, notification, Icon } from 'antd';
 import Login from '../../components/Login';
 import styles from './Login.less';
 import { tenantMode } from '../../defaultSettings';
 
-const { Tab, TenantCode, UserName, Password, Submit } = Login;
+const { Tab, TenantId, UserName, Password, Submit } = Login;
 
 @connect(({ login, loading }) => ({
   login,
@@ -17,6 +17,44 @@ class LoginPage extends Component {
     type: 'account',
     autoLogin: true,
   };
+
+  componentWillMount() {
+    notification.config({
+      placement: 'bottomRight',
+    });
+    notification.destroy();
+    notification.open({
+      message: '手册信息',
+      description: (
+        <div>
+          <p>Sword开发手册：<a target="_blank" href="https://www.kancloud.cn/smallchill/sword">点击查看</a></p>
+          <p>SpringBlade开发手册：<a target="_blank" href="https://www.kancloud.cn/smallchill/blade">点击查看</a></p>
+        </div>
+      ),
+      icon: <Icon type="smile" style={{ color: '#108ee9' }} />,
+      duration: 0,
+    });
+    setTimeout(() => {
+      notification.open({
+        message: '授权信息',
+        description: (
+          <div>
+            <p>欢迎使用Sword!</p>
+            <p>该系统可用BladeX增强开发，</p>
+            <p>若要商用强烈推荐高度定制的商业化框架，具体授权信息请访问如下地址。</p>
+            <p>
+              BladeX 授权地址：
+              <a target="_blank" href="https://bladex.vip/#/vip">
+                点击授权
+              </a>
+            </p>
+          </div>
+        ),
+        icon: <Icon type="smile" style={{ color: '#108ee9' }} />,
+        duration: 0,
+      });
+    }, 500);
+  }
 
   onTabChange = type => {
     this.setState({ type });
@@ -82,19 +120,21 @@ class LoginPage extends Component {
               !submitting &&
               this.renderMessage(formatMessage({ id: 'app.login.message-invalid-credentials' }))}
             {tenantMode ? (
-              <TenantCode
-                name="tenantCode"
-                placeholder={`${formatMessage({ id: 'app.login.tenantCode' })}: 000000`}
+              <TenantId
+                name="tenantId"
+                defaultValue="000000"
+                placeholder={`${formatMessage({ id: 'app.login.tenantId' })}: 000000`}
                 rules={[
                   {
                     required: true,
-                    message: formatMessage({ id: 'validation.tenantCode.required' }),
+                    message: formatMessage({ id: 'validation.tenantId.required' }),
                   },
                 ]}
               />
             ) : null}
             <UserName
               name="account"
+              defaultValue="admin"
               placeholder={`${formatMessage({ id: 'app.login.userName' })}: admin`}
               rules={[
                 {
@@ -105,6 +145,7 @@ class LoginPage extends Component {
             />
             <Password
               name="password"
+              defaultValue="admin"
               placeholder={`${formatMessage({ id: 'app.login.password' })}: admin`}
               rules={[
                 {

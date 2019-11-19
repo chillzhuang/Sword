@@ -52,18 +52,19 @@ export default [
           },
           {
             path: '/account/settings',
-            component: './Account/Settings/Info',
+            //component: './Account/Settings/Info',
             routes: [
               { path: '/account/settings', redirect: '/account/settings/base' },
               { path: '/account/settings/base', component: './Account/Settings/BaseView' },
-              { path: '/account/settings/security', component: './Account/Settings/SecurityView' },
-              { path: '/account/settings/binding', component: './Account/Settings/BindingView' },
+              { path: '/account/settings/password', component: './Account/Settings/PasswordView' },
+              //{ path: '/account/settings/security', component: './Account/Settings/SecurityView' },
+              //{ path: '/account/settings/binding', component: './Account/Settings/BindingView' },
               {
                 path: '/account/settings/notification',
                 component: './Account/Settings/NotificationView',
               },
             ],
-          },
+          }
         ],
       },
       {
@@ -224,6 +225,23 @@ export default [
               { path: '/tool/code/add/:id', component: './System/Code/CodeAdd' },
               { path: '/tool/code/edit/:id', component: './System/Code/CodeEdit' },
               { path: '/tool/code/view/:id', component: './System/Code/CodeView' },
+            ],
+          },
+          {
+            path: '/tool/datasource',
+            routes: [
+              { path: '/tool/datasource', redirect: '/tool/datasource/list' },
+              { path: '/tool/datasource/list', component: './System/DataSource/DataSource' },
+              { path: '/tool/datasource/add', component: './System/DataSource/DataSourceAdd' },
+              { path: '/tool/datasource/add/:id', component: './System/DataSource/DataSourceAdd' },
+              {
+                path: '/tool/datasource/edit/:id',
+                component: './System/DataSource/DataSourceEdit',
+              },
+              {
+                path: '/tool/datasource/view/:id',
+                component: './System/DataSource/DataSourceView',
+              },
             ],
           },
         ],

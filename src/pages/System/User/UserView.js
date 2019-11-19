@@ -77,7 +77,7 @@ class UserView extends PureComponent {
               <Row gutter={24}>
                 <Col span={20}>
                   <FormItem {...formAllItemLayout} label="所属租户">
-                    <span>{detail.tenantCode}</span>
+                    <span>{detail.tenantId}</span>
                   </FormItem>
                 </Col>
               </Row>

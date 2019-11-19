@@ -6,21 +6,21 @@ function getFakeList(req, res) {
   data.push({
     id: '1',
     deptName: '刀锋科技',
-    tenantCode: '000000',
+    tenantId: '000000',
     fullName: '江苏刀锋科技有限公司',
     sort: '1',
     children: [
       {
         id: '2',
         deptName: '常州刀锋',
-        tenantCode: '000000',
+        tenantId: '000000',
         fullName: '常州刀锋科技有限公司',
         sort: '1',
       },
       {
         id: '3',
         deptName: '南京刀锋',
-        tenantCode: '000000',
+        tenantId: '000000',
         fullName: '南京刀锋科技有限公司',
         sort: '2',
       },
@@ -36,7 +36,7 @@ function getFakeDetail(req, res) {
     id: 2,
     parentId: 1,
     parentName: '江苏刀锋',
-    tenantCode: '000000',
+    tenantId: '000000',
     deptName: '常州刀锋',
     fullName: '常州刀锋科技有限公司',
     sort: 1,

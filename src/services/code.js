@@ -32,3 +32,10 @@ export async function genCodes(params) {
     body: func.toFormData(params),
   });
 }
+
+export async function copyCodes(params) {
+  return request('/api/blade-develop/code/copy', {
+    method: 'POST',
+    body: func.toFormData(params),
+  });
+}

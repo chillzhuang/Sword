@@ -1,7 +1,7 @@
 import { message } from 'antd';
 import router from 'umi/router';
 import { USER_NAMESPACE } from '../actions/user';
-import { query as queryUsers, list, submit, detail, remove, grant } from '../services/user';
+import { query as queryUsers, list, submit, update, detail, remove, grant } from '../services/user';
 import { select as tenants } from '../services/tenant';
 import { tree as roles } from '../services/role';
 import { tree as depts } from '../services/dept';
@@ -111,6 +111,13 @@ export default {
     },
     *submit({ payload }, { call }) {
       const response = yield call(submit, payload);
+      if (response.success) {
+        message.success('提交成功');
+        router.push('/system/user');
+      }
+    },
+    *update({ payload }, { call }) {
+      const response = yield call(update, payload);
       if (response.success) {
         message.success('提交成功');
         router.push('/system/user');

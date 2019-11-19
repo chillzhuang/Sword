@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import router from 'umi/router';
-import { Form, Card, Button } from 'antd';
+import { Form, Card, Button, Row, Col } from 'antd';
 import { connect } from 'dva';
 import Panel from '../../../components/Panel';
 import styles from '../../../layouts/Sword.less';
@@ -39,13 +39,19 @@ class CodeView extends PureComponent {
 
     const formItemLayout = {
       labelCol: {
-        xs: { span: 24 },
-        sm: { span: 7 },
+        span: 8,
       },
       wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 12 },
-        md: { span: 10 },
+        span: 16,
+      },
+    };
+
+    const formAllItemLayout = {
+      labelCol: {
+        span: 4,
+      },
+      wrapperCol: {
+        span: 20,
       },
     };
 
@@ -57,32 +63,58 @@ class CodeView extends PureComponent {
 
     return (
       <Panel title="查看" back="/tool/code" action={action}>
-        <Form hideRequiredMark style={{ marginTop: 8 }}>
+        <Form style={{ marginTop: 8 }}>
           <Card className={styles.card} bordered={false}>
-            <FormItem {...formItemLayout} label="模块名">
-              <span>{detail.codeName}</span>
-            </FormItem>
-            <FormItem {...formItemLayout} label="服务名">
-              <span>{detail.serviceName}</span>
-            </FormItem>
-            <FormItem {...formItemLayout} label="表名">
-              <span>{detail.tableName}</span>
-            </FormItem>
-            <FormItem {...formItemLayout} label="表前缀名">
-              <span>{detail.tablePrefix}</span>
-            </FormItem>
-            <FormItem {...formItemLayout} label="主键名">
-              <span>{detail.pkName}</span>
-            </FormItem>
-            <FormItem {...formItemLayout} label="包名">
-              <span>{detail.packageName}</span>
-            </FormItem>
-            <FormItem {...formItemLayout} label="后端生成路径">
-              <span>{detail.apiPath}</span>
-            </FormItem>
-            <FormItem {...formItemLayout} label="前端生成路径">
-              <span>{detail.webPath}</span>
-            </FormItem>
+            <Row gutter={24}>
+              <Col span={10}>
+                <FormItem {...formItemLayout} label="模块名">
+                  <span>{detail.codeName}</span>
+                </FormItem>
+              </Col>
+              <Col span={10}>
+                <FormItem {...formItemLayout} label="服务名">
+                  <span>{detail.serviceName}</span>
+                </FormItem>
+              </Col>
+            </Row>
+            <Row gutter={24}>
+              <Col span={10}>
+                <FormItem {...formItemLayout} label="表名">
+                  <span>{detail.tableName}</span>
+                </FormItem>
+              </Col>
+              <Col span={10}>
+                <FormItem {...formItemLayout} label="表前缀名">
+                  <span>{detail.tablePrefix}</span>
+                </FormItem>
+              </Col>
+            </Row>
+            <Row gutter={24}>
+              <Col span={10}>
+                <FormItem {...formItemLayout} label="主键名">
+                  <span>{detail.pkName}</span>
+                </FormItem>
+              </Col>
+              <Col span={10}>
+                <FormItem {...formItemLayout} label="包名">
+                  <span>{detail.packageName}</span>
+                </FormItem>
+              </Col>
+            </Row>
+            <Row gutter={24}>
+              <Col span={20}>
+                <FormItem {...formAllItemLayout} label="后端生成路径">
+                  <span>{detail.apiPath}</span>
+                </FormItem>
+              </Col>
+            </Row>
+            <Row gutter={24}>
+              <Col span={20}>
+                <FormItem {...formAllItemLayout} label="前端生成路径">
+                  <span>{detail.webPath}</span>
+                </FormItem>
+              </Col>
+            </Row>
           </Card>
         </Form>
       </Panel>

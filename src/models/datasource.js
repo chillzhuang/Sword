@@ -1,20 +1,14 @@
 import { message } from 'antd';
 import router from 'umi/router';
-import { CODE_NAMESPACE } from '../actions/code';
-import { list, submit, detail, remove } from '../services/code';
-import { select } from '../services/datasource';
-import { dict } from '../services/dict';
+import { DATASOURCE_NAMESPACE } from '../actions/datasource';
+import { list, submit, detail, remove } from '../services/datasource';
 
 export default {
-  namespace: CODE_NAMESPACE,
+  namespace: DATASOURCE_NAMESPACE,
   state: {
     data: {
       list: [],
-      pagination: {},
-    },
-    init: {
-      source: [],
-      category: [],
+      pagination: false,
     },
     detail: {},
   },
@@ -31,19 +25,6 @@ export default {
               current: response.data.current,
               pageSize: response.data.size,
             },
-          },
-        });
-      }
-    },
-    *fetchInit({ payload }, { call, put }) {
-      const responseS = yield call(select, payload);
-      const responseC = yield call(dict, payload);
-      if (responseS.success && responseC.success) {
-        yield put({
-          type: 'saveInit',
-          payload: {
-            source: responseS.data,
-            category: responseC.data,
           },
         });
       }
@@ -69,7 +50,7 @@ export default {
       const response = yield call(submit, payload);
       if (response.success) {
         message.success('提交成功');
-        router.push('/tool/code');
+        router.push('/tool/datasource');
       }
     },
     *remove({ payload }, { call }) {
@@ -88,12 +69,6 @@ export default {
       return {
         ...state,
         data: action.payload,
-      };
-    },
-    saveInit(state, action) {
-      return {
-        ...state,
-        init: action.payload,
       };
     },
     saveDetail(state, action) {

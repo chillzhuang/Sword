@@ -1,5 +1,5 @@
 export default {
-  'app.login.tenantCode': '租户编号',
+  'app.login.tenantId': '租户ID',
   'app.login.userName': '用户名',
   'app.login.password': '密码',
   'app.login.message-invalid-credentials': '账户或密码错误（admin/ant.design）',
@@ -21,7 +21,7 @@ export default {
   'app.register-result.view-mailbox': '查看邮箱',
   'validation.email.required': '请输入邮箱地址！',
   'validation.email.wrong-format': '邮箱地址格式错误！',
-  'validation.tenantCode.required': '请输入租户编号!',
+  'validation.tenantId.required': '请输入租户ID!',
   'validation.userName.required': '请输入用户名!',
   'validation.password.required': '请输入密码！',
   'validation.password.twice': '两次输入的密码不匹配!',

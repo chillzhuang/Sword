@@ -2,21 +2,21 @@ import React, { PureComponent } from 'react';
 import { connect } from 'dva';
 import { Button, Col, Form, Input, Row } from 'antd';
 import Panel from '../../../components/Panel';
-import { TENANT_LIST } from '../../../actions/tenant';
+import { DATASOURCE_LIST } from '../../../actions/datasource';
 import Grid from '../../../components/Sword/Grid';
 
 const FormItem = Form.Item;
 
-@connect(({ tenant, loading }) => ({
-  tenant,
-  loading: loading.models.tenant,
+@connect(({ datasource, loading }) => ({
+  datasource,
+  loading: loading.models.datasource,
 }))
 @Form.create()
-class Tenant extends PureComponent {
+class DataSource extends PureComponent {
   // ============ 查询 ===============
   handleSearch = params => {
     const { dispatch } = this.props;
-    dispatch(TENANT_LIST(params));
+    dispatch(DATASOURCE_LIST(params));
   };
 
   // ============ 查询表单 ===============
@@ -27,18 +27,8 @@ class Tenant extends PureComponent {
     return (
       <Row gutter={{ md: 8, lg: 24, xl: 48 }}>
         <Col md={6} sm={24}>
-          <FormItem label="租户ID">
-            {getFieldDecorator('tenantId')(<Input placeholder="请输入租户ID" />)}
-          </FormItem>
-        </Col>
-        <Col md={6} sm={24}>
-          <FormItem label="租户名称">
-            {getFieldDecorator('tenantName')(<Input placeholder="请输入租户名称" />)}
-          </FormItem>
-        </Col>
-        <Col md={6} sm={24}>
-          <FormItem label="联系电话">
-            {getFieldDecorator('contactNumber')(<Input placeholder="请输入联系电话" />)}
+          <FormItem label="查询名称">
+            {getFieldDecorator('name')(<Input placeholder="查询名称" />)}
           </FormItem>
         </Col>
         <Col>
@@ -56,34 +46,30 @@ class Tenant extends PureComponent {
   };
 
   render() {
-    const code = 'tenant';
+    const code = 'datasource';
 
     const {
       form,
       loading,
-      tenant: { data },
+      datasource: { data },
     } = this.props;
 
     const columns = [
       {
-        title: '租户ID',
-        dataIndex: 'tenantId',
+        title: '名称',
+        dataIndex: 'name',
       },
       {
-        title: '租户名称',
-        dataIndex: 'tenantName',
+        title: '驱动类',
+        dataIndex: 'driverClass',
       },
       {
-        title: '联系人',
-        dataIndex: 'linkman',
+        title: '用户名',
+        dataIndex: 'username',
       },
       {
-        title: '联系电话',
-        dataIndex: 'contactNumber',
-      },
-      {
-        title: '联系地址',
-        dataIndex: 'address',
+        title: '备注',
+        dataIndex: 'remark',
       },
     ];
 
@@ -102,4 +88,4 @@ class Tenant extends PureComponent {
     );
   }
 }
-export default Tenant;
+export default DataSource;

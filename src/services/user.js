@@ -51,6 +51,24 @@ export async function submit(params) {
   });
 }
 
+export async function update(params) {
+  return request('/api/blade-user/update', {
+    method: 'POST',
+    body: params,
+  });
+}
+
 export async function detail(params) {
   return request(`/api/blade-user/detail?${stringify(params)}`);
+}
+
+export async function getUserInfo() {
+  return request('/api/blade-user/info');
+}
+
+export async function updatePassword(params) {
+  return request('/api/blade-user/update-password', {
+    method: 'POST',
+    body: func.toFormData(params),
+  });
 }

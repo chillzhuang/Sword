@@ -62,8 +62,11 @@ class HeaderView extends React.Component {
       return;
     }
     if (key === 'userinfo') {
-      message.success('即将开放');
-      // router.push('/account/settings/base');
+      router.push('/account/settings/base');
+      return;
+    }
+    if (key === 'password') {
+      router.push('/account/settings/password');
       return;
     }
     if (key === 'triggerError') {

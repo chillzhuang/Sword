@@ -6,7 +6,7 @@ function getFakeList(req, res) {
   list.push(
     {
       id: '1',
-      tenantCode: '000000',
+      tenantId: '000000',
       account: 'admin',
       name: '超级管理员',
       realName: '管理员',
@@ -18,7 +18,7 @@ function getFakeList(req, res) {
     },
     {
       id: '2',
-      tenantCode: '000001',
+      tenantId: '000001',
       account: 'user',
       name: '系统用户',
       realName: '用户',
@@ -44,7 +44,7 @@ function getFakeDetail(req, res) {
   const json = { code: 200, success: true, msg: '操作成功' };
   json.data = {
     id: '1',
-    tenantCode: '000000',
+    tenantId: '000000',
     account: 'admin',
     name: '超级管理员',
     realName: '管理员',
@@ -74,6 +74,7 @@ const proxy = {
   'POST /api/blade-user/grant': fakeSuccess,
   'POST /api/blade-user/reset-password': fakeSuccess,
   'POST /api/blade-user/submit': fakeSuccess,
+  'POST /api/blade-user/update': fakeSuccess,
   'POST /api/blade-user/remove': fakeSuccess,
 
   // 支持值为 Object 和 Array

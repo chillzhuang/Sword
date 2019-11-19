@@ -1,10 +1,10 @@
-import React, { PureComponent } from 'react';
+import React, { Fragment, PureComponent } from 'react';
 import { connect } from 'dva';
-import { Button, Col, Form, Input, message, Modal, Row } from 'antd';
+import { Button, Col, Divider, Form, Input, message, Modal, Row } from "antd";
 import Panel from '../../../components/Panel';
 import Grid from '../../../components/Sword/Grid';
 import { CODE_LIST } from '../../../actions/code';
-import { genCodes } from '../../../services/code';
+import { genCodes, copyCodes } from '../../../services/code';
 
 const FormItem = Form.Item;
 
@@ -16,12 +16,14 @@ const FormItem = Form.Item;
 class Code extends PureComponent {
   state = {
     selectedRows: [],
+    params: {},
   };
 
   // ============ 查询 ===============
   handleSearch = params => {
     const { dispatch } = this.props;
     dispatch(CODE_LIST(params));
+    this.setState({ params });
   };
 
   onSelectRow = rows => {
@@ -54,6 +56,36 @@ class Code extends PureComponent {
           message.success(response.msg);
         } else {
           message.error(response.msg || '生成失败');
+        }
+      },
+      onCancel() {},
+    });
+  };
+
+  copyCode = keys => {
+    const { params } = this.state;
+    const { dispatch } = this.props;
+    if (keys.length === 0) {
+      message.warn('请先选择一条数据!');
+      return;
+    }
+    if (keys.length > 1) {
+      message.warn('只能选择一条数据!');
+      return;
+    }
+    Modal.confirm({
+      title: '代码配置复制确认',
+      content: '是否复制选中模块的配置?',
+      okText: '确定',
+      okType: 'danger',
+      cancelText: '取消',
+      async onOk() {
+        const response = await copyCodes({ id: keys[0] });
+        if (response.success) {
+          message.success(response.msg);
+          dispatch(CODE_LIST(params));
+        } else {
+          message.error(response.msg || '复制失败');
         }
       },
       onCancel() {},
@@ -102,6 +134,19 @@ class Code extends PureComponent {
     </Button>
   );
 
+  renderActionButton = (keys, rows) => (
+    <Fragment key="copy">
+      <Divider type="vertical" />
+      <a
+        onClick={() => {
+          this.copyCode(keys, rows);
+        }}
+      >
+        复制
+      </a>
+    </Fragment>
+  );
+
   render() {
     const code = 'code';
 
@@ -147,6 +192,7 @@ class Code extends PureComponent {
           onSearch={this.handleSearch}
           renderSearchForm={this.renderSearchForm}
           renderLeftButton={this.renderLeftButton}
+          renderActionButton={this.renderActionButton}
           loading={loading}
           data={data}
           columns={columns}

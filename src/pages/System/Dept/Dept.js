@@ -33,8 +33,8 @@ class Dept extends PureComponent {
           </FormItem>
         </Col>
         <Col md={6} sm={24}>
-          <FormItem label="租户编号">
-            {getFieldDecorator('tenantCode')(<Input placeholder="请输入角色名称" />)}
+          <FormItem label="租户ID">
+            {getFieldDecorator('tenantId')(<Input placeholder="请输入角色名称" />)}
           </FormItem>
         </Col>
         <Col md={6} sm={24}>
@@ -67,8 +67,8 @@ class Dept extends PureComponent {
 
     const columns = [
       {
-        title: '租户编号',
-        dataIndex: 'tenantCode',
+        title: '租户ID',
+        dataIndex: 'tenantId',
       },
       {
         title: '部门名称',

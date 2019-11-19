@@ -1,106 +1,161 @@
-import React, { Component, Fragment } from 'react';
-import { formatMessage, FormattedMessage } from 'umi/locale';
-import { Form, Input, Upload, Select, Button } from 'antd';
-import { connect } from 'dva';
-import styles from './BaseView.less';
-import GeographicView from './GeographicView';
-import PhoneView from './PhoneView';
-// import { getTimeDistance } from '@/utils/utils';
+import React, { Component } from 'react';
+import { formatMessage } from 'umi/locale';
+import { Form, Input, Upload, Button, message, Icon, Card } from 'antd';
+import Panel from '../../../components/Panel';
+import { getUserInfo, update } from '../../../services/user';
+import { getToken } from '../../../utils/authority';
 
 const FormItem = Form.Item;
-const { Option } = Select;
 
-// 头像组件 方便以后独立，增加裁剪之类的功能
-const AvatarView = ({ avatar }) => (
-  <Fragment>
-    <div className={styles.avatar_title}>
-      <FormattedMessage id="app.settings.basic.avatar" defaultMessage="Avatar" />
-    </div>
-    <div className={styles.avatar}>
-      <img src={avatar} alt="avatar" />
-    </div>
-    <Upload fileList={[]}>
-      <div className={styles.button_view}>
-        <Button icon="upload">
-          <FormattedMessage id="app.settings.basic.change-avatar" defaultMessage="Change avatar" />
-        </Button>
-      </div>
-    </Upload>
-  </Fragment>
-);
-
-const validatorGeographic = (rule, value, callback) => {
-  const { province, city } = value;
-  if (!province.key) {
-    callback('Please input your province!');
-  }
-  if (!city.key) {
-    callback('Please input your city!');
-  }
-  callback();
-};
-
-const validatorPhone = (rule, value, callback) => {
-  const values = value.split('-');
-  if (!values[0]) {
-    callback('Please input your area code!');
-  }
-  if (!values[1]) {
-    callback('Please input your phone number!');
-  }
-  callback();
-};
-
-@connect(({ user }) => ({
-  currentUser: user.currentUser,
-}))
 @Form.create()
 class BaseView extends Component {
+  state = {
+    userId: '',
+    avatar: '',
+    loading: false,
+  };
+
   componentDidMount() {
     this.setBaseInfo();
   }
 
   setBaseInfo = () => {
-    const { currentUser, form } = this.props;
-    Object.keys(form.getFieldsValue()).forEach(key => {
-      const obj = {};
-      obj[key] = currentUser[key] || null;
-      form.setFieldsValue(obj);
+    const { form } = this.props;
+    getUserInfo().then(resp => {
+      if (resp.success) {
+        const userInfo = resp.data;
+        Object.keys(form.getFieldsValue()).forEach(key => {
+          const obj = {};
+          obj[key] = userInfo[key] || null;
+          form.setFieldsValue(obj);
+        });
+        this.setState({ userId: userInfo.id, avatar: userInfo.avatar });
+      } else {
+        message.error(resp.msg || '获取数据失败');
+      }
     });
   };
 
-  getAvatarURL() {
-    const { currentUser } = this.props;
-    if (currentUser.avatar) {
-      return currentUser.avatar;
+  beforeUpload = file => {
+    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
+    if (!isJpgOrPng) {
+      message.error('You can only upload JPG/PNG file!');
     }
-    const url = 'https://gw.alipayobjects.com/zos/rmsportal/BiazfanxmamNRoxxVxka.png';
-    return url;
-  }
+    const isLt2M = file.size / 1024 / 1024 < 2;
+    if (!isLt2M) {
+      message.error('Image must smaller than 2MB!');
+    }
+    return isJpgOrPng && isLt2M;
+  };
 
-  getViewDom = ref => {
-    this.view = ref;
+  handleChange = info => {
+    if (info.file.status === 'uploading') {
+      this.setState({ loading: true });
+      return;
+    }
+    if (info.file.status === 'done') {
+      this.setState({ loading: false, avatar: info.file.response.data.link });
+    }
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    const { form } = this.props;
+    const { userId, avatar } = this.state;
+    form.validateFieldsAndScroll((err, values) => {
+      if (!err) {
+        const params = {
+          id: userId,
+          ...values,
+          avatar,
+        };
+        update(params).then(resp => {
+          if (resp.success) {
+            message.success(resp.msg);
+          } else {
+            message.error(resp.msg || '提交失败');
+          }
+        });
+      }
+    });
   };
 
   render() {
     const {
       form: { getFieldDecorator },
     } = this.props;
+
+    const { avatar, loading } = this.state;
+
+    const formItemLayout = {
+      labelCol: {
+        xs: { span: 24 },
+        sm: { span: 7 },
+      },
+      wrapperCol: {
+        xs: { span: 24 },
+        sm: { span: 12 },
+        md: { span: 10 },
+      },
+    };
+
+    const uploadProp = {
+      action: '/api/blade-resource/oss/endpoint/put-file',
+      headers: {
+        'Blade-Auth': getToken(),
+      },
+    };
+
+    const uploadButton = (
+      <div>
+        <Icon type={loading ? 'loading' : 'plus'} />
+        <div className="ant-upload-text">上传头像</div>
+      </div>
+    );
+
+    const action = (
+      <Button type="primary" onClick={this.handleSubmit}>
+        提交
+      </Button>
+    );
+
     return (
-      <div className={styles.baseView} ref={this.getViewDom}>
-        <div className={styles.left}>
-          <Form layout="vertical" onSubmit={this.handleSubmit} hideRequiredMark>
-            <FormItem label={formatMessage({ id: 'app.settings.basic.email' })}>
-              {getFieldDecorator('email', {
+      <Panel title="个人设置" back="/" action={action}>
+        <Form style={{ marginTop: 8 }} hideRequiredMark>
+          <Card title="基本信息" bordered={false}>
+            <FormItem
+              {...formItemLayout}
+              label={formatMessage({ id: 'app.settings.basic.avatar' })}
+            >
+              {getFieldDecorator('avatar', {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage({ id: 'app.settings.basic.email-message' }, {}),
+                    message: formatMessage({ id: 'app.settings.basic.avatar' }, {}),
                   },
                 ],
-              })(<Input />)}
+              })(
+                <Upload
+                  name="file"
+                  listType="picture-card"
+                  className="avatar-uploader"
+                  showUploadList={false}
+                  beforeUpload={this.beforeUpload}
+                  onChange={this.handleChange}
+                  {...uploadProp}
+                >
+                  {avatar ? (
+                    <img src={avatar} alt="avatar" style={{ width: '100%' }} />
+                  ) : (
+                    uploadButton
+                  )}
+                </Upload>
+              )}
             </FormItem>
-            <FormItem label={formatMessage({ id: 'app.settings.basic.nickname' })}>
+            <FormItem
+              {...formItemLayout}
+              label={formatMessage({ id: 'app.settings.basic.nickname' })}
+            >
               {getFieldDecorator('name', {
                 rules: [
                   {
@@ -110,81 +165,42 @@ class BaseView extends Component {
                 ],
               })(<Input />)}
             </FormItem>
-            <FormItem label={formatMessage({ id: 'app.settings.basic.profile' })}>
-              {getFieldDecorator('profile', {
+            <FormItem
+              {...formItemLayout}
+              label={formatMessage({ id: 'app.settings.basic.realname' })}
+            >
+              {getFieldDecorator('realName', {
                 rules: [
                   {
                     required: true,
-                    message: formatMessage({ id: 'app.settings.basic.profile-message' }, {}),
-                  },
-                ],
-              })(
-                <Input.TextArea
-                  placeholder={formatMessage({ id: 'app.settings.basic.profile-placeholder' })}
-                  rows={4}
-                />
-              )}
-            </FormItem>
-            <FormItem label={formatMessage({ id: 'app.settings.basic.country' })}>
-              {getFieldDecorator('country', {
-                rules: [
-                  {
-                    required: true,
-                    message: formatMessage({ id: 'app.settings.basic.country-message' }, {}),
-                  },
-                ],
-              })(
-                <Select style={{ maxWidth: 220 }}>
-                  <Option value="China">中国</Option>
-                </Select>
-              )}
-            </FormItem>
-            <FormItem label={formatMessage({ id: 'app.settings.basic.geographic' })}>
-              {getFieldDecorator('geographic', {
-                rules: [
-                  {
-                    required: true,
-                    message: formatMessage({ id: 'app.settings.basic.geographic-message' }, {}),
-                  },
-                  {
-                    validator: validatorGeographic,
-                  },
-                ],
-              })(<GeographicView />)}
-            </FormItem>
-            <FormItem label={formatMessage({ id: 'app.settings.basic.address' })}>
-              {getFieldDecorator('address', {
-                rules: [
-                  {
-                    required: true,
-                    message: formatMessage({ id: 'app.settings.basic.address-message' }, {}),
+                    message: formatMessage({ id: 'app.settings.basic.realname-message' }, {}),
                   },
                 ],
               })(<Input />)}
             </FormItem>
-            <FormItem label={formatMessage({ id: 'app.settings.basic.phone' })}>
+            <FormItem {...formItemLayout} label={formatMessage({ id: 'app.settings.basic.phone' })}>
               {getFieldDecorator('phone', {
                 rules: [
                   {
                     required: true,
                     message: formatMessage({ id: 'app.settings.basic.phone-message' }, {}),
                   },
-                  { validator: validatorPhone },
                 ],
-              })(<PhoneView />)}
+              })(<Input />)}
             </FormItem>
-            <Button type="primary">
-              <FormattedMessage
-                id="app.settings.basic.update"
-                defaultMessage="Update Information"
-              />
-            </Button>
-          </Form>
-        </div>
-        <div className={styles.right}>
-          <AvatarView avatar={this.getAvatarURL()} />
-        </div>
-      </div>
+            <FormItem {...formItemLayout} label={formatMessage({ id: 'app.settings.basic.email' })}>
+              {getFieldDecorator('email', {
+                rules: [
+                  {
+                    required: true,
+                    message: formatMessage({ id: 'app.settings.basic.email-message' }, {}),
+                  },
+                ],
+              })(<Input />)}
+            </FormItem>
+          </Card>
+        </Form>
+      </Panel>
     );
   }
 }

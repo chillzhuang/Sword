@@ -4,15 +4,15 @@ import { Form, Card, Button } from 'antd';
 import { connect } from 'dva';
 import Panel from '../../../components/Panel';
 import styles from '../../../layouts/Sword.less';
-import { TENANT_DETAIL } from '../../../actions/tenant';
+import { DATASOURCE_DETAIL } from '../../../actions/datasource';
 
 const FormItem = Form.Item;
 
-@connect(({ tenant }) => ({
-  tenant,
+@connect(({ datasource }) => ({
+  datasource,
 }))
 @Form.create()
-class TenantView extends PureComponent {
+class DataSourceView extends PureComponent {
   componentWillMount() {
     const {
       dispatch,
@@ -20,7 +20,7 @@ class TenantView extends PureComponent {
         params: { id },
       },
     } = this.props;
-    dispatch(TENANT_DETAIL(id));
+    dispatch(DATASOURCE_DETAIL(id));
   }
 
   handleEdit = () => {
@@ -29,12 +29,12 @@ class TenantView extends PureComponent {
         params: { id },
       },
     } = this.props;
-    router.push(`/system/tenant/edit/${id}`);
+    router.push(`/tool/datasource/edit/${id}`);
   };
 
   render() {
     const {
-      tenant: { detail },
+      datasource: { detail },
     } = this.props;
 
     const formItemLayout = {
@@ -56,23 +56,26 @@ class TenantView extends PureComponent {
     );
 
     return (
-      <Panel title="查看" back="/system/tenant" action={action}>
+      <Panel title="查看" back="/tool/datasource" action={action}>
         <Form hideRequiredMark style={{ marginTop: 8 }}>
           <Card className={styles.card} bordered={false}>
-            <FormItem {...formItemLayout} label="租户ID">
-              <span>{detail.tenantId}</span>
+            <FormItem {...formItemLayout} label="名称">
+              <span>{detail.name}</span>
             </FormItem>
-            <FormItem {...formItemLayout} label="租户名称">
-              <span>{detail.tenantName}</span>
+            <FormItem {...formItemLayout} label="驱动类">
+              <span>{detail.driverClass}</span>
             </FormItem>
-            <FormItem {...formItemLayout} label="联系人">
-              <span>{detail.linkman}</span>
+            <FormItem {...formItemLayout} label="连接地址">
+              <span>{detail.url}</span>
             </FormItem>
-            <FormItem {...formItemLayout} label="联系电话">
-              <span>{detail.contactNumber}</span>
+            <FormItem {...formItemLayout} label="用户名">
+              <span>{detail.username}</span>
             </FormItem>
-            <FormItem {...formItemLayout} label="联系地址">
-              <span>{detail.address}</span>
+            <FormItem {...formItemLayout} label="密码">
+              <span>{detail.password}</span>
+            </FormItem>
+            <FormItem {...formItemLayout} label="备注">
+              <span>{detail.remark}</span>
             </FormItem>
           </Card>
         </Form>
@@ -80,4 +83,4 @@ class TenantView extends PureComponent {
     );
   }
 }
-export default TenantView;
+export default DataSourceView;

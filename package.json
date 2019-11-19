@@ -1,6 +1,6 @@
 {
   "name": "sword",
-  "version": "1.0.0",
+  "version": "2.5.4",
   "description": "An out-of-box UI solution for enterprise applications",
   "private": true,
   "scripts": {

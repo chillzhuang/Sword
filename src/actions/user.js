@@ -43,6 +43,13 @@ export function USER_SUBMIT(payload) {
   };
 }
 
+export function USER_UPDATE(payload) {
+  return {
+    type: `${USER_NAMESPACE}/update`,
+    payload,
+  };
+}
+
 export function USER_REMOVE(payload) {
   return {
     type: `${USER_NAMESPACE}/remove`,

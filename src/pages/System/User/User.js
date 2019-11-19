@@ -175,8 +175,8 @@ class User extends PureComponent {
 
     const columns = [
       {
-        title: '租户编号',
-        dataIndex: 'tenantCode',
+        title: '租户ID',
+        dataIndex: 'tenantId',
       },
       {
         title: '登录账号',

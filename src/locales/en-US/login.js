@@ -1,5 +1,5 @@
 export default {
-  'app.login.tenantCode': 'tenantCode',
+  'app.login.tenantId': 'tenantId',
   'app.login.userName': 'userName',
   'app.login.password': 'password',
   'app.login.message-invalid-credentials': 'Invalid username or password（admin/ant.design）',
@@ -21,7 +21,7 @@ export default {
   'app.register-result.view-mailbox': 'View mailbox',
   'validation.email.required': 'Please enter your email!',
   'validation.email.wrong-format': 'The email address is in the wrong format!',
-  'validation.userName.tenantCode': 'Please enter your tenantCode!',
+  'validation.userName.tenantId': 'Please enter your tenantId!',
   'validation.userName.required': 'Please enter your userName!',
   'validation.password.required': 'Please enter your password!',
   'validation.password.twice': 'The passwords entered twice do not match!',

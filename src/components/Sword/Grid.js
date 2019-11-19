@@ -34,7 +34,9 @@ export default class Grid extends PureComponent {
     const { form } = this.props;
 
     form.validateFields(async (err, fieldsValue) => {
-      if (err) return;
+      if (err) {
+        return;
+      }
 
       const values = {
         ...fieldsValue,
@@ -57,7 +59,9 @@ export default class Grid extends PureComponent {
       formValues: {},
       selectedRows: [],
     });
-    if (onReset) onReset();
+    if (onReset) {
+      onReset();
+    }
     this.refreshTable();
   };
 
@@ -79,7 +83,9 @@ export default class Grid extends PureComponent {
       size,
       ...formValues,
     };
-    if (onSearch) onSearch(params);
+    if (onSearch) {
+      onSearch(params);
+    }
   };
 
   handleSelectRows = rows => {
@@ -105,12 +111,13 @@ export default class Grid extends PureComponent {
     });
   };
 
-  handelToolBarClick = btn => {
+  handleToolBarClick = btn => {
+    const { selectedRows } = this.state;
     const keys = this.getSelectKeys();
-    this.handelClick(btn, keys);
+    this.handleClick(btn, keys, selectedRows);
   };
 
-  handelClick = (btn, keys = []) => {
+  handleClick = (btn, keys = [], rows) => {
     const { path, alias } = btn;
     const { btnCallBack } = this.props;
     const refresh = (temp = true) => this.refreshTable(temp);
@@ -176,7 +183,7 @@ export default class Grid extends PureComponent {
       return;
     }
     if (btnCallBack) {
-      btnCallBack({ btn, keys, refresh });
+      btnCallBack({ btn, keys, rows, refresh });
     }
   };
 
@@ -195,12 +202,13 @@ export default class Grid extends PureComponent {
       renderSearchForm,
       renderLeftButton,
       renderRightButton,
+      renderActionButton,
     } = this.props;
     let { columns } = this.props;
 
     const actionButtons = buttons.filter(button => button.action === 2 || button.action === 3);
 
-    if (columns && Array.isArray(columns) && actionButtons.length > 0) {
+    if (columns && Array.isArray(columns) && (actionButtons.length > 0 || renderActionButton)) {
       const key = pkField || rowKey || 'id';
       columns = [
         ...columns,
@@ -209,17 +217,24 @@ export default class Grid extends PureComponent {
           width: actionColumnWidth || 200,
           render: (text, record) => (
             <Fragment>
-              {actionButtons.map((button, index) => (
-                <Fragment key={button.code}>
-                  {index > 0 ? <Divider type="vertical" /> : null}
-                  <a
-                    title={formatMessage({ id: `button.${button.alias}.name` })}
-                    onClick={() => this.handelClick(button, [record[childPkField || key]])}
-                  >
-                    <FormattedMessage id={`button.${button.alias}.name`} />
-                  </a>
-                </Fragment>
-              ))}
+              <div style={{ textAlign: 'center' }}>
+                {actionButtons.map((button, index) => (
+                  <Fragment key={button.code}>
+                    {index > 0 ? <Divider type="vertical" /> : null}
+                    <a
+                      title={formatMessage({ id: `button.${button.alias}.name` })}
+                      onClick={() =>
+                        this.handleClick(button, [record[childPkField || key]], [record])
+                      }
+                    >
+                      <FormattedMessage id={`button.${button.alias}.name`} />
+                    </a>
+                  </Fragment>
+                ))}
+                {renderActionButton
+                  ? renderActionButton([record[childPkField || key]], [record])
+                  : null}
+              </div>
             </Fragment>
           ),
         },
@@ -236,7 +251,7 @@ export default class Grid extends PureComponent {
             buttons={buttons}
             renderLeftButton={renderLeftButton}
             renderRightButton={renderRightButton}
-            onClick={this.handelToolBarClick}
+            onClick={this.handleToolBarClick}
           />
           <StandardTable
             rowKey={rowKey || 'id'}
@@ -249,6 +264,7 @@ export default class Grid extends PureComponent {
             scroll={scroll}
             tblProps={tblProps}
             size="middle"
+            bordered
           />
         </div>
       </Card>

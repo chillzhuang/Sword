@@ -6,7 +6,7 @@ function getFakeList(req, res) {
   list.push(
     {
       id: '1',
-      tenantCode: '000000',
+      tenantId: '000000',
       tenantName: '管理组',
       linkman: 'Chill',
       contactNumber: '66666666666',
@@ -14,7 +14,7 @@ function getFakeList(req, res) {
     },
     {
       id: '2',
-      tenantCode: '000001',
+      tenantId: '000001',
       tenantName: '用户组',
       linkman: 'Bill',
       contactNumber: '23333333333',
@@ -36,7 +36,7 @@ function getFakeDetail(req, res) {
   const json = { code: 200, success: true, msg: '操作成功' };
   json.data = {
     id: '1',
-    tenantCode: '000000',
+    tenantId: '000000',
     tenantName: '管理组',
     linkman: 'Chill',
     contactNumber: '66666666666',
@@ -54,11 +54,11 @@ function getFakeTenantSelect(req, res) {
   const json = { code: 200, success: true, msg: '操作成功' };
   json.data = [
     {
-      tenantCode: '000000',
+      tenantId: '000000',
       tenantName: '管理组',
     },
     {
-      tenantCode: '000001',
+      tenantId: '000001',
       tenantName: '用户组',
     },
   ];

@@ -1,11 +1,12 @@
 import React, { PureComponent } from 'react';
-import { Form, Input, Card, Button } from 'antd';
+import { Form, Input, Card, Button, Col, Row, Select, Radio } from 'antd';
 import { connect } from 'dva';
 import Panel from '../../../components/Panel';
 import styles from '../../../layouts/Sword.less';
-import { CODE_DETAIL, CODE_SUBMIT } from '../../../actions/code';
+import { CODE_DETAIL, CODE_INIT, CODE_SUBMIT } from '../../../actions/code';
 
 const FormItem = Form.Item;
+const RadioGroup = Radio.Group;
 
 @connect(({ code, loading }) => ({
   code,
@@ -21,6 +22,7 @@ class CodeEdit extends PureComponent {
       },
     } = this.props;
     dispatch(CODE_DETAIL(id));
+    dispatch(CODE_INIT());
   }
 
   handleSubmit = e => {
@@ -38,7 +40,6 @@ class CodeEdit extends PureComponent {
           id,
           ...values,
         };
-        console.log(params);
         dispatch(CODE_SUBMIT(params));
       }
     });
@@ -47,19 +48,27 @@ class CodeEdit extends PureComponent {
   render() {
     const {
       form: { getFieldDecorator },
-      code: { detail },
+      code: { detail, init },
       submitting,
     } = this.props;
 
+    const { source, category } = init;
+
     const formItemLayout = {
       labelCol: {
-        xs: { span: 24 },
-        sm: { span: 7 },
+        span: 8,
       },
       wrapperCol: {
-        xs: { span: 24 },
-        sm: { span: 12 },
-        md: { span: 10 },
+        span: 16,
+      },
+    };
+
+    const formAllItemLayout = {
+      labelCol: {
+        span: 4,
+      },
+      wrapperCol: {
+        span: 20,
       },
     };
 
@@ -71,96 +80,190 @@ class CodeEdit extends PureComponent {
 
     return (
       <Panel title="修改" back="/tool/code" action={action}>
-        <Form hideRequiredMark style={{ marginTop: 8 }}>
+        <Form style={{ marginTop: 8 }}>
           <Card className={styles.card} bordered={false}>
-            <FormItem {...formItemLayout} label="模块名">
-              {getFieldDecorator('codeName', {
-                rules: [
-                  {
-                    required: true,
-                    message: '请输入模块名',
-                  },
-                ],
-                initialValue: detail.codeName,
-              })(<Input placeholder="请输入模块名" />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label="服务名">
-              {getFieldDecorator('serviceName', {
-                rules: [
-                  {
-                    required: true,
-                    message: '请输入服务名',
-                  },
-                ],
-                initialValue: detail.serviceName,
-              })(<Input placeholder="请输入服务名" />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label="表名">
-              {getFieldDecorator('tableName', {
-                rules: [
-                  {
-                    required: true,
-                    message: '请输入表名',
-                  },
-                ],
-                initialValue: detail.tableName,
-              })(<Input placeholder="请输入表名" />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label="表前缀名">
-              {getFieldDecorator('tablePrefix', {
-                rules: [
-                  {
-                    required: true,
-                    message: '请输入表前缀名',
-                  },
-                ],
-                initialValue: detail.tablePrefix,
-              })(<Input placeholder="请输入表前缀名" />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label="主键名">
-              {getFieldDecorator('pkName', {
-                rules: [
-                  {
-                    required: true,
-                    message: '请输入主键名',
-                  },
-                ],
-                initialValue: detail.pkName,
-              })(<Input placeholder="请输入主键名" />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label="包名">
-              {getFieldDecorator('packageName', {
-                rules: [
-                  {
-                    required: true,
-                    message: '请输入包名',
-                  },
-                ],
-                initialValue: detail.packageName,
-              })(<Input placeholder="请输入包名" />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label="后端生成路径">
-              {getFieldDecorator('apiPath', {
-                rules: [
-                  {
-                    required: true,
-                    message: '请输入后端生成路径',
-                  },
-                ],
-                initialValue: detail.apiPath,
-              })(<Input placeholder="请输入后端生成路径" />)}
-            </FormItem>
-            <FormItem {...formItemLayout} label="前端生成路径">
-              {getFieldDecorator('webPath', {
-                rules: [
-                  {
-                    required: true,
-                    message: '请输入前端生成路径',
-                  },
-                ],
-                initialValue: detail.webPath,
-              })(<Input placeholder="请输入前端生成路径" />)}
-            </FormItem>
+            <Row gutter={24}>
+              <Col span={20}>
+                <FormItem {...formAllItemLayout} label="数据源">
+                  {getFieldDecorator('datasourceId', {
+                    rules: [
+                      {
+                        required: true,
+                        message: '请选择数据源',
+                      },
+                    ],
+                    initialValue: detail.datasourceId,
+                  })(
+                    <Select placeholder="请选择数据源">
+                      {source.map(d => (
+                        <Select.Option key={d.id} value={d.id}>
+                          {d.name}
+                        </Select.Option>
+                      ))}
+                    </Select>
+                  )}
+                </FormItem>
+              </Col>
+            </Row>
+            <Row gutter={24}>
+              <Col span={10}>
+                <FormItem {...formItemLayout} label="模块名">
+                  {getFieldDecorator('codeName', {
+                    rules: [
+                      {
+                        required: true,
+                        message: '请输入模块名',
+                      },
+                    ],
+                    initialValue: detail.codeName,
+                  })(<Input placeholder="请输入模块名" />)}
+                </FormItem>
+              </Col>
+              <Col span={10}>
+                <FormItem {...formItemLayout} label="服务名">
+                  {getFieldDecorator('serviceName', {
+                    rules: [
+                      {
+                        required: true,
+                        message: '请输入服务名',
+                      },
+                    ],
+                    initialValue: detail.serviceName,
+                  })(<Input placeholder="请输入服务名" />)}
+                </FormItem>
+              </Col>
+            </Row>
+            <Row gutter={24}>
+              <Col span={10}>
+                <FormItem {...formItemLayout} label="表名">
+                  {getFieldDecorator('tableName', {
+                    rules: [
+                      {
+                        required: true,
+                        message: '请输入表名',
+                      },
+                    ],
+                    initialValue: detail.tableName,
+                  })(<Input placeholder="请输入表名" />)}
+                </FormItem>
+              </Col>
+              <Col span={10}>
+                <FormItem {...formItemLayout} label="表前缀名">
+                  {getFieldDecorator('tablePrefix', {
+                    rules: [
+                      {
+                        required: true,
+                        message: '请输入表前缀名',
+                      },
+                    ],
+                    initialValue: detail.tablePrefix,
+                  })(<Input placeholder="请输入表前缀名" />)}
+                </FormItem>
+              </Col>
+            </Row>
+            <Row gutter={24}>
+              <Col span={10}>
+                <FormItem {...formItemLayout} label="主键名">
+                  {getFieldDecorator('pkName', {
+                    rules: [
+                      {
+                        required: true,
+                        message: '请输入主键名',
+                      },
+                    ],
+                    initialValue: detail.pkName,
+                  })(<Input placeholder="请输入主键名" />)}
+                </FormItem>
+              </Col>
+              <Col span={10}>
+                <FormItem {...formItemLayout} label="包名">
+                  {getFieldDecorator('packageName', {
+                    rules: [
+                      {
+                        required: true,
+                        message: '请输入包名',
+                      },
+                    ],
+                    initialValue: detail.packageName,
+                  })(<Input placeholder="请输入包名" />)}
+                </FormItem>
+              </Col>
+            </Row>
+
+            <Row gutter={24}>
+              <Col span={10}>
+                <FormItem {...formItemLayout} label="基础业务">
+                  {getFieldDecorator('baseMode', {
+                    rules: [
+                      {
+                        required: true,
+                        message: '请配置基础业务',
+                      },
+                    ],
+                    initialValue: detail.baseMode,
+                  })(
+                    <RadioGroup name="baseMode">
+                      {category.map(d => (
+                        <Radio key={d.dictKey} value={d.dictKey}>
+                          {d.dictValue}
+                        </Radio>
+                      ))}
+                    </RadioGroup>
+                  )}
+                </FormItem>
+              </Col>
+              <Col span={10}>
+                <FormItem {...formItemLayout} label="包装器">
+                  {getFieldDecorator('wrapMode', {
+                    rules: [
+                      {
+                        required: true,
+                        message: '请配置包装器',
+                      },
+                    ],
+                    initialValue: detail.wrapMode,
+                  })(
+                    <RadioGroup name="wrapMode">
+                      {category.map(d => (
+                        <Radio key={d.dictKey} value={d.dictKey}>
+                          {d.dictValue}
+                        </Radio>
+                      ))}
+                    </RadioGroup>
+                  )}
+                </FormItem>
+              </Col>
+            </Row>
+            <Row gutter={24}>
+              <Col span={20}>
+                <FormItem {...formAllItemLayout} label="后端生成路径">
+                  {getFieldDecorator('apiPath', {
+                    rules: [
+                      {
+                        required: true,
+                        message: '请输入后端生成路径',
+                      },
+                    ],
+                    initialValue: detail.apiPath,
+                  })(<Input placeholder="请输入后端生成路径" />)}
+                </FormItem>
+              </Col>
+            </Row>
+            <Row gutter={24}>
+              <Col span={20}>
+                <FormItem {...formAllItemLayout} label="前端生成路径">
+                  {getFieldDecorator('webPath', {
+                    rules: [
+                      {
+                        required: true,
+                        message: '请输入前端生成路径',
+                      },
+                    ],
+                    initialValue: detail.webPath,
+                  })(<Input placeholder="请输入前端生成路径" />)}
+                </FormItem>
+              </Col>
+            </Row>
           </Card>
         </Form>
       </Panel>

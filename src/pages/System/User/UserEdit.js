@@ -5,7 +5,7 @@ import { connect } from 'dva';
 import Panel from '../../../components/Panel';
 import func from '../../../utils/Func';
 import styles from '../../../layouts/Sword.less';
-import { USER_CHANGE_INIT, USER_DETAIL, USER_INIT, USER_SUBMIT } from '../../../actions/user';
+import { USER_CHANGE_INIT, USER_DETAIL, USER_INIT, USER_UPDATE } from '../../../actions/user';
 import { tenantMode } from '../../../defaultSettings';
 
 const FormItem = Form.Item;
@@ -45,7 +45,7 @@ class UserEdit extends PureComponent {
           deptId: func.join(values.deptId),
           birthday: func.format(values.birthday),
         };
-        dispatch(USER_SUBMIT(params));
+        dispatch(USER_UPDATE(params));
       }
     });
   };
@@ -53,7 +53,7 @@ class UserEdit extends PureComponent {
   handleChange = value => {
     const { dispatch, form } = this.props;
     form.resetFields(['roleId', 'deptId']);
-    dispatch(USER_CHANGE_INIT({ tenantCode: value }));
+    dispatch(USER_CHANGE_INIT({ tenantId: value }));
   };
 
   render() {
@@ -113,14 +113,14 @@ class UserEdit extends PureComponent {
               <Row gutter={24}>
                 <Col span={20}>
                   <FormItem {...formAllItemLayout} label="所属租户">
-                    {getFieldDecorator('tenantCode', {
+                    {getFieldDecorator('tenantId', {
                       rules: [
                         {
                           required: true,
                           message: '请选择所属租户',
                         },
                       ],
-                      initialValue: detail.tenantCode,
+                      initialValue: detail.tenantId,
                     })(
                       <Select
                         showSearch
@@ -132,7 +132,7 @@ class UserEdit extends PureComponent {
                         placeholder="请选择所属租户"
                       >
                         {tenantList.map(d => (
-                          <Select.Option key={d.tenantCode} value={d.tenantCode}>
+                          <Select.Option key={d.tenantId} value={d.tenantId}>
                             {d.tenantName}
                           </Select.Option>
                         ))}
