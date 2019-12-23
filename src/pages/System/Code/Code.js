@@ -1,6 +1,6 @@
 import React, { Fragment, PureComponent } from 'react';
 import { connect } from 'dva';
-import { Button, Col, Divider, Form, Input, message, Modal, Row } from "antd";
+import { Button, Col, Divider, Form, Input, message, Modal, Row } from 'antd';
 import Panel from '../../../components/Panel';
 import Grid from '../../../components/Sword/Grid';
 import { CODE_LIST } from '../../../actions/code';

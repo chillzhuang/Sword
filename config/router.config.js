@@ -64,7 +64,7 @@ export default [
                 component: './Account/Settings/NotificationView',
               },
             ],
-          }
+          },
         ],
       },
       {

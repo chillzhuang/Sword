@@ -5,6 +5,7 @@ import hash from 'hash.js';
 import { Base64 } from 'js-base64';
 import { clientId, clientSecret } from '../defaultSettings';
 import { getToken, removeAll } from './authority';
+import RequestForm from '@/utils/RequestForm';
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -135,13 +136,20 @@ export default function request(url, option) {
     newOptions.method === 'PUT' ||
     newOptions.method === 'DELETE'
   ) {
-    if (!(newOptions.body instanceof FormData)) {
+    if (!(newOptions.body instanceof FormData) && !(newOptions.body instanceof RequestForm)) {
       newOptions.headers = {
         Accept: 'application/json',
         'Content-Type': 'application/json;charset=utf-8',
         ...newOptions.headers,
       };
       newOptions.body = JSON.stringify(newOptions.body);
+    } else if (newOptions.body instanceof RequestForm) {
+      newOptions.headers = {
+        Accept: 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
+        ...newOptions.headers,
+      };
+      newOptions.body = newOptions.body.parse();
     } else {
       // newOptions.body is FormData
       newOptions.headers = {
