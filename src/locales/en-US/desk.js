@@ -1,0 +1,16 @@
+export default {
+  'desk.notice.title': 'title',
+  'desk.notice.title.placeholder': 'please enter a title',
+  'desk.notice.title.validation': 'please enter a title',
+  'desk.notice.category': 'category',
+  'desk.notice.category.placeholder': 'please select a category',
+  'desk.notice.category.validation': 'please select a category',
+  'desk.notice.date': 'date',
+  'desk.notice.date.placeholder': 'please enter a date',
+  'desk.notice.date.validation': 'please enter a date',
+  'desk.notice.date.start': 'start date',
+  'desk.notice.date.end': 'end date',
+  'desk.notice.content': 'content',
+  'desk.notice.content.placeholder': 'please enter a content',
+  'desk.notice.content.validation': 'please enter a content',
+};
