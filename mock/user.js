@@ -166,6 +166,17 @@ const proxy = {
       msg: '操作成功',
     });
   },
+  'GET /api/blade-auth/captcha': (req, res) => {
+    res.send({
+      code: 200,
+      success: true,
+      data: {
+        key: 'blade-captcha',
+        image: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7',
+      },
+      msg: '操作成功',
+    });
+  },
   'POST /api/register': (req, res) => {
     res.send({ status: 'ok', currentAuthority: 'user' });
   },

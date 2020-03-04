@@ -14,14 +14,14 @@ class Workplace extends PureComponent {
           <Row gutter={24}>
             <Col span={24}>
               <div style={{ textAlign: 'center' }}>
-                <img src="https://img.shields.io/badge/Release-V2.6.1-green.svg" alt="Downloads" />
+                <img src="https://img.shields.io/badge/Release-V2.6.2-green.svg" alt="Downloads" />
                 <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status" />
                 <img
-                  src="https://img.shields.io/badge/Spring%20Cloud-Hoxton.SR1-blue.svg"
+                  src="https://img.shields.io/badge/Spring%20Cloud-Hoxton.SR2-blue.svg"
                   alt="Coverage Status"
                 />
                 <img
-                  src="https://img.shields.io/badge/Spring%20Boot-2.2.4.RELEASE-blue.svg"
+                  src="https://img.shields.io/badge/Spring%20Boot-2.2.5.RELEASE-blue.svg"
                   alt="Downloads"
                 />
                 <a href="https://bladex.vip">
@@ -206,7 +206,15 @@ class Workplace extends PureComponent {
             </Row>
             <Row gutter={24}>
               <Card className={styles.card} bordered={false}>
-                <Collapse bordered={false} defaultActiveKey={['15']}>
+                <Collapse bordered={false} defaultActiveKey={['16']}>
+                  <Panel header="2.6.1发布 增加登陆验证码，支持seata1.0" key="16">
+                    <div>1.升级SpringBoot 2.2.5.RELEASE</div>
+                    <div>2.升级SpringCloud Hoxton.SR2</div>
+                    <div>3.升级Seata 1.1.0</div>
+                    <div>4.增加阿里云对象存储封装</div>
+                    <div>5.优化BladeFeignTargeter的加载逻辑</div>
+                    <div>6.优化系统配置</div>
+                  </Panel>
                   <Panel header="2.6.1发布 增加登陆验证码，支持seata1.0" key="15">
                     <div>1.升级SpringBoot 2.2.4.RELEASE</div>
                     <div>2.升级Alibaba Cloud 2.2.0.RELEASE</div>
