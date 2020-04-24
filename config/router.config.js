@@ -126,6 +126,17 @@ export default [
             ],
           },
           {
+            path: '/system/post',
+            routes: [
+              { path: '/system/post', redirect: '/system/post/list' },
+              { path: '/system/post/list', component: './System/Post/Post' },
+              { path: '/system/post/add', component: './System/Post/PostAdd' },
+              { path: '/system/post/add/:id', component: './System/Post/PostAdd' },
+              { path: '/system/post/edit/:id', component: './System/Post/PostEdit' },
+              { path: '/system/post/view/:id', component: './System/Post/PostView' },
+            ],
+          },
+          {
             path: '/system/role',
             routes: [
               { path: '/system/role', redirect: '/system/role/list' },

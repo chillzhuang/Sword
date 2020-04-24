@@ -14,14 +14,14 @@ class Workplace extends PureComponent {
           <Row gutter={24}>
             <Col span={24}>
               <div style={{ textAlign: 'center' }}>
-                <img src="https://img.shields.io/badge/Release-V2.6.2-green.svg" alt="Downloads" />
+                <img src="https://img.shields.io/badge/Release-V2.7.0-green.svg" alt="Downloads" />
                 <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status" />
                 <img
-                  src="https://img.shields.io/badge/Spring%20Cloud-Hoxton.SR2-blue.svg"
+                  src="https://img.shields.io/badge/Spring%20Cloud-Hoxton.SR3-blue.svg"
                   alt="Coverage Status"
                 />
                 <img
-                  src="https://img.shields.io/badge/Spring%20Boot-2.2.5.RELEASE-blue.svg"
+                  src="https://img.shields.io/badge/Spring%20Boot-2.2.6.RELEASE-blue.svg"
                   alt="Downloads"
                 />
                 <a href="https://bladex.vip">
@@ -147,7 +147,7 @@ class Workplace extends PureComponent {
                   <div>
                     2.接3个月以内工期的react、vue、springboot、springcloud、app、小程序等软件定制服务
                   </div>
-                  <div>3.有意向请联系唯一指定QQ:85088620</div>
+                  <div>3.有意向请联系唯一指定QQ:1272154962</div>
                 </Panel>
               </Collapse>
             </Card>
@@ -206,7 +206,19 @@ class Workplace extends PureComponent {
             </Row>
             <Row gutter={24}>
               <Card className={styles.card} bordered={false}>
-                <Collapse bordered={false} defaultActiveKey={['16']}>
+                <Collapse bordered={false} defaultActiveKey={['17']}>
+                  <Panel header="2.7.0发布 内核全面升级，增加岗位管理，用户导入导出" key="17">
+                    <div>1.升级至 SpringCloud Hoxton.SR3</div>
+                    <div>2.升级至 SpringBoot 2.2.6.RELEASE</div>
+                    <div>3.升级至 Avue 2.5.0</div>
+                    <div>4.升级Saber内核，采用最新版本API，优化交互体验</div>
+                    <div>5.新增岗位管理模块</div>
+                    <div>6.新增用户导入导出模块</div>
+                    <div>7.数据库主键统一改成bigint并采用snowflake算法</div>
+                    <div>8.优化INode类，主键跟随修改为Long类型</div>
+                    <div>9.优化鉴权逻辑，支持header以及parameter两种方式</div>
+                    <div>10.优化代码生成模板以支持最新版API</div>
+                  </Panel>
                   <Panel header="2.6.1发布 增加登陆验证码，支持seata1.0" key="16">
                     <div>1.升级SpringBoot 2.2.5.RELEASE</div>
                     <div>2.升级SpringCloud Hoxton.SR2</div>

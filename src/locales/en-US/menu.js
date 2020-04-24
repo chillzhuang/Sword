@@ -9,6 +9,7 @@ export default {
   'menu.system': 'system',
   'menu.system.user': 'user',
   'menu.system.dept': 'department',
+  'menu.system.post': 'post',
   'menu.system.dict': 'dictionary',
   'menu.system.menu': 'menu',
   'menu.system.role': 'role',

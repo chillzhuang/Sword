@@ -46,6 +46,7 @@ function getFakeDetail(req, res) {
     id: '1',
     tenantId: '000000',
     account: 'admin',
+    code: 'admin',
     name: '超级管理员',
     realName: '管理员',
     phone: '13888888888',
@@ -54,6 +55,8 @@ function getFakeDetail(req, res) {
     roleName: '超级管理员',
     deptId: 1,
     deptName: '刀锋科技',
+    postId: 1,
+    postName: '首席执行官',
     sex: 1,
     sexName: '男',
     birthday: '2018-12-31 23:33:33',
@@ -61,7 +64,6 @@ function getFakeDetail(req, res) {
   };
   return res.json(json);
 }
-
 function fakeSuccess(req, res) {
   const json = { code: 200, success: true, msg: '操作成功' };
   return res.json(json);

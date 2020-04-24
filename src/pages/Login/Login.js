@@ -4,7 +4,7 @@ import { formatMessage, FormattedMessage } from 'umi/locale';
 import { Checkbox, Alert } from 'antd';
 import Login from '../../components/Login';
 import styles from './Login.less';
-import { tenantMode } from '../../defaultSettings';
+import { tenantMode, captchaMode } from '../../defaultSettings';
 
 const { Tab, TenantId, UserName, Password, Captcha, Submit } = Login;
 
@@ -117,7 +117,7 @@ class LoginPage extends Component {
               ]}
               onPressEnter={() => this.loginForm.validateFields(this.handleSubmit)}
             />
-            <Captcha name="code" mode="image" />
+            {captchaMode ? <Captcha name="code" mode="image" /> : null}
           </Tab>
           <div>
             <Checkbox checked={autoLogin} onChange={this.changeAutoLogin}>

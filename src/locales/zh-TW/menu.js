@@ -9,6 +9,7 @@ export default {
   'menu.system': '系統管理',
   'menu.system.user': '用戶管理',
   'menu.system.dept': '部門管理',
+  'menu.system.post': '崗位管理',
   'menu.system.dict': '字典管理',
   'menu.system.menu': '菜單管理',
   'menu.system.role': '角色管理',

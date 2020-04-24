@@ -5,6 +5,7 @@ import { query as queryUsers, list, submit, update, detail, remove, grant } from
 import { select as tenants } from '../services/tenant';
 import { tree as roles } from '../services/role';
 import { tree as depts } from '../services/dept';
+import { select as posts } from '../services/post';
 import { getCurrentUser } from '../utils/authority';
 
 export default {
@@ -20,6 +21,7 @@ export default {
     init: {
       roleTree: [],
       deptTree: [],
+      postList: [],
       tenantList: [],
     },
     detail: {},
@@ -59,13 +61,20 @@ export default {
     *fetchInit({ payload }, { call, put }) {
       const responseRole = yield call(roles, payload);
       const responseDept = yield call(depts, payload);
+      const responsePost = yield call(posts, payload);
       const responseTenant = yield call(tenants, payload);
-      if (responseRole.success && responseDept.success && responseTenant.success) {
+      if (
+        responseRole.success &&
+        responseDept.success &&
+        responsePost.success &&
+        responseTenant.success
+      ) {
         yield put({
           type: 'saveInit',
           payload: {
             roleTree: responseRole.data,
             deptTree: responseDept.data,
+            postList: responsePost.data,
             tenantList: responseTenant.data,
           },
         });
@@ -74,12 +83,14 @@ export default {
     *fetchChangeInit({ payload }, { call, put }) {
       const responseRole = yield call(roles, payload);
       const responseDept = yield call(depts, payload);
-      if (responseRole.success && responseDept.success) {
+      const responsePost = yield call(posts, payload);
+      if (responseRole.success && responseDept.success && responsePost.success) {
         yield put({
           type: 'saveChangeInit',
           payload: {
             roleTree: responseRole.data,
             deptTree: responseDept.data,
+            postList: responsePost.data,
           },
         });
       }
@@ -174,6 +185,7 @@ export default {
       const newState = state;
       newState.init.roleTree = action.payload.roleTree;
       newState.init.deptTree = action.payload.deptTree;
+      newState.init.postList = action.payload.postList;
       return {
         ...newState,
       };

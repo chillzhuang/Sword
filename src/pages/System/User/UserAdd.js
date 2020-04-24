@@ -35,6 +35,7 @@ class UserAdd extends PureComponent {
             ...values,
             roleId: func.join(values.roleId),
             deptId: func.join(values.deptId),
+            postId: func.join(values.postId),
             birthday: func.format(values.birthday),
           };
           dispatch(USER_SUBMIT(params));
@@ -45,7 +46,7 @@ class UserAdd extends PureComponent {
 
   handleChange = value => {
     const { dispatch, form } = this.props;
-    form.resetFields(['roleId', 'deptId']);
+    form.resetFields(['roleId', 'deptId', 'postId']);
     dispatch(USER_CHANGE_INIT({ tenantId: value }));
   };
 
@@ -53,7 +54,7 @@ class UserAdd extends PureComponent {
     const {
       form: { getFieldDecorator },
       user: {
-        init: { roleTree, deptTree, tenantList },
+        init: { roleTree, deptTree, postList, tenantList },
       },
       submitting,
     } = this.props;
@@ -226,6 +227,41 @@ class UserAdd extends PureComponent {
                       multiple
                       placeholder="请选择所属部门"
                     />
+                  )}
+                </FormItem>
+              </Col>
+            </Row>
+            <Row gutter={24}>
+              <Col span={10}>
+                <FormItem {...formItemLayout} label="用户编号">
+                  {getFieldDecorator('code', {})(<Input placeholder="请输入用户编号" />)}
+                </FormItem>
+              </Col>
+              <Col span={10}>
+                <FormItem {...formItemLayout} label="所属岗位">
+                  {getFieldDecorator('postId', {
+                    rules: [
+                      {
+                        required: true,
+                        message: '请选择所属岗位',
+                      },
+                    ],
+                  })(
+                    <Select
+                      mode="multiple"
+                      showSearch
+                      filterOption={(input, option) =>
+                        option.props.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+                      }
+                      allowClear
+                      placeholder="请选择所属岗位"
+                    >
+                      {postList.map(d => (
+                        <Select.Option key={d.id} value={d.id}>
+                          {d.postName}
+                        </Select.Option>
+                      ))}
+                    </Select>
                   )}
                 </FormItem>
               </Col>

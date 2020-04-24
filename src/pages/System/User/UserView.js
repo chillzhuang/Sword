@@ -108,6 +108,18 @@ class UserView extends PureComponent {
             </Row>
             <Row gutter={24}>
               <Col span={10}>
+                <FormItem {...formItemLayout} label="用户编号">
+                  <span>{detail.code}</span>
+                </FormItem>
+              </Col>
+              <Col span={10}>
+                <FormItem {...formItemLayout} label="所属岗位">
+                  <span>{detail.postName}</span>
+                </FormItem>
+              </Col>
+            </Row>
+            <Row gutter={24}>
+              <Col span={10}>
                 <FormItem {...formItemLayout} label="手机号码">
                   <span>{detail.phone}</span>
                 </FormItem>

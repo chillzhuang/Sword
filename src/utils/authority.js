@@ -34,6 +34,14 @@ export function setToken(token) {
   localStorage.setItem('sword-token', token);
 }
 
+export function getAccessToken() {
+  return localStorage.getItem('sword-access-token') || '';
+}
+
+export function setAccessToken(accessToken) {
+  localStorage.setItem('sword-access-token', accessToken);
+}
+
 export function getRoutes() {
   return JSON.parse(localStorage.getItem('sword-routes')) || [];
 }

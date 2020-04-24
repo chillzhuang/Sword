@@ -3,6 +3,7 @@ module.exports = {
   clientId: 'sword', // 客户端id
   clientSecret: 'sword_secret', // 客户端密钥
   tenantMode: true, // 开启租户模式
+  captchaMode: true, // 开启验证码模式
   navTheme: 'dark', // theme for nav menu
   primaryColor: '#1890FF', // primary color of ant design
   layout: 'sidemenu', // nav menu position: sidemenu or topmenu

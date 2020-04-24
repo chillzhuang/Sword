@@ -5,6 +5,7 @@ import { accountLogin } from '../services/user';
 import { dynamicRoutes, dynamicButtons } from '../services/menu';
 import {
   setAuthority,
+  setAccessToken,
   setToken,
   setCurrentUser,
   setRoutes,
@@ -101,6 +102,7 @@ export default {
         } = payload;
         const token = `${tokenType} ${accessToken}`;
         setToken(token);
+        setAccessToken(accessToken);
         setAuthority(authority);
         setCurrentUser({ avatar, account, name: userName, authority });
       } else {
