@@ -91,6 +91,18 @@ export default [
         ],
       },
       {
+        path: '/base',
+        routes: [
+          {
+            path: '/base/region',
+            routes: [
+              { path: '/base/region', redirect: '/base/region/detail' },
+              { path: '/base/region/detail', component: './Base/Region/Region' },
+            ],
+          },
+        ],
+      },
+      {
         path: '/system',
         routes: [
           {

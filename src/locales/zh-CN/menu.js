@@ -6,6 +6,8 @@ export default {
   'menu.dashboard.workplace': '工作台',
   'menu.desk': '工作台',
   'menu.desk.notice': '通知公告',
+  'menu.base': '基础配置',
+  'menu.base.region': '行政区划',
   'menu.system': '系统管理',
   'menu.system.user': '用户管理',
   'menu.system.dept': '部门管理',

@@ -51,6 +51,10 @@ export function setRoutes(routes) {
   localStorage.setItem('sword-routes', JSON.stringify(routes));
 }
 
+export function hasButton(buttons, code) {
+  return buttons.filter(button => button.code === code).length > 0;
+}
+
 export function getButtons() {
   return JSON.parse(localStorage.getItem('sword-buttons')) || [];
 }
