@@ -47,7 +47,7 @@ class WrapFormItem extends Component {
   refreshCaptcha = () => {
     // 获取验证码
     getCaptchaImage().then(resp => {
-      const {data} = resp;
+      const { data } = resp;
       if (data.key) {
         this.setState({ image: data.image });
         setCaptchaKey(data.key);

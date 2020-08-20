@@ -2,7 +2,8 @@ import React, { PureComponent } from 'react';
 import { Card, Col, Collapse, Row, Divider, Tag } from 'antd';
 import styles from '../../layouts/Sword.less';
 
-import PageHeaderWrapper from '@/components/PageHeaderWrapper';
+import PageHeaderWrapper from '../../components/PageHeaderWrapper';
+import ThirdRegister from '../../components/ThirdRegister';
 
 const { Panel } = Collapse;
 
@@ -11,6 +12,11 @@ class Workplace extends PureComponent {
     return (
       <PageHeaderWrapper>
         <Card className={styles.card} bordered={false}>
+          <Row gutter={24}>
+            <Col span={24}>
+              <ThirdRegister />
+            </Col>
+          </Row>
           <Row gutter={24}>
             <Col span={24}>
               <div style={{ textAlign: 'center' }}>
@@ -211,13 +217,15 @@ class Workplace extends PureComponent {
                     <div>1.升级至 SpringCloud Hoxton.SR5</div>
                     <div>2.升级至 SpringBoot 2.2.7.RELEASE</div>
                     <div>3.升级至 Seata 1.2.0</div>
-                    <div>4.升级至 FastJson 1.2.70</div>
-                    <div>5.升级至 Avue 2.5.3</div>
-                    <div>6.新增行政区划管理模块</div>
-                    <div>7.优化用户导入的密码配置逻辑</div>
-                    <div>8.优化INode结构支持懒加载数据格式</div>
-                    <div>9.优化代码生成模板，支持最新版Saber结构</div>
-                    <div>10.修复Log模块在多线程、异步场景下报错的问题</div>
+                    <div>4.升级至 MybatisPlus 3.3.2</div>
+                    <div>5.升级至 Kinfe4j 2.0.3</div>
+                    <div>6.升级至 FastJson 1.2.70</div>
+                    <div>7.升级至 Avue 2.5.3</div>
+                    <div>8.新增行政区划管理模块</div>
+                    <div>9.优化用户导入的密码配置逻辑</div>
+                    <div>10.优化INode结构支持懒加载数据格式</div>
+                    <div>11.优化代码生成模板，支持最新版Saber结构</div>
+                    <div>12.修复Log模块在多线程、异步场景下报错的问题</div>
                   </Panel>
                   <Panel header="2.7.0发布 内核全面升级，增加岗位管理，用户导入导出" key="17">
                     <div>1.升级至 SpringCloud Hoxton.SR3</div>

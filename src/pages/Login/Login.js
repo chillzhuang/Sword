@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import { formatMessage, FormattedMessage } from 'umi/locale';
-import { Checkbox, Alert } from 'antd';
+import { Checkbox, Alert, Icon, Row, Col, Card, Spin } from 'antd';
 import Login from '../../components/Login';
 import styles from './Login.less';
-import { tenantMode, captchaMode } from '../../defaultSettings';
+import { tenantMode, captchaMode, authUrl } from '../../defaultSettings';
+import { getQueryString, getTopUrl, validateNull } from '@/utils/utils';
 
 const { Tab, TenantId, UserName, Password, Captcha, Submit } = Login;
 
@@ -17,6 +18,36 @@ class LoginPage extends Component {
     type: 'account',
     autoLogin: true,
   };
+
+  componentDidMount() {
+    const domain = getTopUrl();
+    const redirectUrl = '/oauth/redirect/';
+    const {
+      dispatch,
+      route: { routes, authority },
+    } = this.props;
+
+    let source = getQueryString('source');
+    const code = getQueryString('code');
+    const state = getQueryString('state');
+    if (validateNull(source) && domain.includes(redirectUrl)) {
+      // eslint-disable-next-line prefer-destructuring
+      source = domain.split('?')[0];
+      // eslint-disable-next-line prefer-destructuring
+      source = source.split(redirectUrl)[1];
+    }
+    if (!validateNull(source) && !validateNull(code) && !validateNull(state)) {
+      dispatch({
+        type: 'login/socialLogin',
+        payload: { source, code, state, tenantId: '000000' },
+      });
+    } else {
+      dispatch({
+        type: 'menu/fetchMenuData',
+        payload: { routes, authority },
+      });
+    }
+  }
 
   onTabChange = type => {
     this.setState({ type });
@@ -53,6 +84,10 @@ class LoginPage extends Component {
     }
   };
 
+  handleClick = source => {
+    window.location.href = `${authUrl}/${source}`;
+  };
+
   changeAutoLogin = e => {
     this.setState({
       autoLogin: e.target.checked,
@@ -65,7 +100,7 @@ class LoginPage extends Component {
 
   render() {
     const { login, submitting } = this.props;
-    const { type, autoLogin } = this.state;
+    const { type, autoLogin, loading } = this.state;
     return (
       <div className={styles.main}>
         <Login
@@ -118,6 +153,66 @@ class LoginPage extends Component {
               onPressEnter={() => this.loginForm.validateFields(this.handleSubmit)}
             />
             {captchaMode ? <Captcha name="code" mode="image" /> : null}
+          </Tab>
+          <Tab key="social" tab={formatMessage({ id: 'app.login.tab-login-social' })}>
+            <Card className={styles.card} bordered={false}>
+              <Row gutter={24} className={styles.iconPreview}>
+                <Col span={4} key="github">
+                  <Icon
+                    type="github"
+                    theme="filled"
+                    onClick={() => {
+                      this.handleClick('github');
+                    }}
+                  />
+                </Col>
+                <Col span={4} key="gitee">
+                  <Icon
+                    type="google-circle"
+                    theme="filled"
+                    onClick={() => {
+                      this.handleClick('gitee');
+                    }}
+                  />
+                </Col>
+                <Col span={4} key="wechat">
+                  <Icon
+                    type="wechat"
+                    theme="filled"
+                    onClick={() => {
+                      this.handleClick('wechat_open');
+                    }}
+                  />
+                </Col>
+                <Col span={4} key="dingtalk">
+                  <Icon
+                    type="dingtalk-circle"
+                    theme="filled"
+                    onClick={() => {
+                      this.handleClick('dingtalk');
+                    }}
+                  />
+                </Col>
+                <Col span={4} key="alipay">
+                  <Icon
+                    type="alipay-circle"
+                    theme="filled"
+                    onClick={() => {
+                      this.handleClick('alipay');
+                    }}
+                  />
+                </Col>
+                <Col span={4} key="taobao">
+                  <Icon
+                    type="taobao-circle"
+                    theme="filled"
+                    onClick={() => {
+                      this.handleClick('taobao');
+                    }}
+                  />
+                </Col>
+              </Row>
+            </Card>
           </Tab>
           <div>
             <Checkbox checked={autoLogin} onChange={this.changeAutoLogin}>

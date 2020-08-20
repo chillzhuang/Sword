@@ -6,6 +6,7 @@ export default {
   'app.login.message-invalid-verification-code': '验证码错误',
   'app.login.tab-login-credentials': '账户密码登录',
   'app.login.tab-login-mobile': '手机号登录',
+  'app.login.tab-login-social': '第三方系统登陆',
   'app.login.remember-me': '自动登录',
   'app.login.forgot-password': '忘记密码',
   'app.login.sign-in-with': '其他登录方式',

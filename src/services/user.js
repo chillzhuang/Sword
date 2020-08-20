@@ -20,6 +20,25 @@ export async function accountLogin(params) {
   });
 }
 
+export async function socialLogin(params) {
+  const values = params;
+  values.grantType = 'social';
+  values.scope = 'all';
+  return request('/api/blade-auth/token', {
+    method: 'POST',
+    body: func.toFormData(values),
+  });
+}
+
+export async function registerGuest(form, oauthId) {
+  const values = form;
+  values.oauthId = oauthId;
+  return request('/api/blade-user/register-guest', {
+    method: 'POST',
+    body: func.toFormData(values),
+  });
+}
+
 export async function query() {
   return request('/api/users');
 }

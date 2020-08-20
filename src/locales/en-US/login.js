@@ -6,6 +6,7 @@ export default {
   'app.login.message-invalid-verification-code': 'Invalid verification code',
   'app.login.tab-login-credentials': 'Credentials',
   'app.login.tab-login-mobile': 'Mobile number',
+  'app.login.tab-login-social': 'Social System',
   'app.login.remember-me': 'Remember me',
   'app.login.forgot-password': 'Forgot your password?',
   'app.login.sign-in-with': 'Sign in with',

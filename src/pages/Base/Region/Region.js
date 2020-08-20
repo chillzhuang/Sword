@@ -236,11 +236,7 @@ class Region extends PureComponent {
 
     const buttons = getButton('region');
 
-    const {
-      treeData,
-      treeCascader,
-      debugVisible,
-    } = this.state;
+    const { treeData, treeCascader, debugVisible } = this.state;
 
     const formItemLayout = {
       labelCol: {

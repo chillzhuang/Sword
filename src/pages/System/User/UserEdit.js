@@ -23,7 +23,7 @@ class UserEdit extends PureComponent {
         params: { id },
       },
     } = this.props;
-    dispatch(USER_DETAIL(id)).then(()=>{
+    dispatch(USER_DETAIL(id)).then(() => {
       const {
         user: { detail },
       } = this.props;
@@ -227,7 +227,7 @@ class UserEdit extends PureComponent {
               <Col span={10}>
                 <FormItem {...formItemLayout} label="用户编号">
                   {getFieldDecorator('code', {
-                    initialValue: detail.code
+                    initialValue: detail.code,
                   })(<Input placeholder="请输入用户编号" />)}
                 </FormItem>
               </Col>

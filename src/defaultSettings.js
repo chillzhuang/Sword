@@ -16,4 +16,6 @@ module.exports = {
     disableLocal: false,
   },
   pwa: true,
+  // 第三方登陆授权地址
+  authUrl: 'http://localhost/blade-auth/oauth/render',
 };

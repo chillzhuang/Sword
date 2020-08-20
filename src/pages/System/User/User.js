@@ -1,17 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
-import {
-  Upload,
-  Icon,
-  Button,
-  Col,
-  Form,
-  Input,
-  message,
-  Modal,
-  Row,
-  Tree,
-} from 'antd';
+import { Upload, Icon, Button, Col, Form, Input, message, Modal, Row, Tree } from 'antd';
 import Panel from '../../../components/Panel';
 import Grid from '../../../components/Sword/Grid';
 import { USER_INIT, USER_LIST, USER_ROLE_GRANT } from '../../../actions/user';
@@ -249,7 +238,6 @@ class User extends PureComponent {
     </div>
   );
 
-
   render() {
     const code = 'user';
 
@@ -269,7 +257,7 @@ class User extends PureComponent {
       headers: {
         'Blade-Auth': getToken(),
       },
-      action: "/api/blade-user/import-user",
+      action: '/api/blade-user/import-user',
     };
 
     const formItemLayout = {

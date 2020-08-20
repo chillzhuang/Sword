@@ -1,7 +1,8 @@
 import { routerRedux } from 'dva/router';
+import { notification } from 'antd';
 import { stringify } from 'qs';
 import { getFakeCaptcha } from '../services/api';
-import { accountLogin } from '../services/user';
+import { accountLogin, socialLogin } from '../services/user';
 import { dynamicRoutes, dynamicButtons } from '../services/menu';
 import {
   setAuthority,
@@ -14,6 +15,7 @@ import {
 } from '../utils/authority';
 import { getPageQuery, formatRoutes, formatButtons } from '../utils/utils';
 import { reloadAuthorized } from '../utils/Authorized';
+import { getTopUrl } from '../utils/utils';
 
 export default {
   namespace: 'login',
@@ -63,7 +65,29 @@ export default {
         yield put(routerRedux.replace(redirect || '/'));
       }
     },
-
+    *socialLogin({ payload }, { call, put }) {
+      const response = yield call(socialLogin, payload);
+      if (response.success) {
+        yield put({
+          type: 'changeLoginStatus',
+          payload: {
+            status: true,
+            type: 'login',
+            data: { ...response.data },
+          },
+        });
+        reloadAuthorized();
+        const topUrl = getTopUrl();
+        const redirectUrl = '/oauth/redirect/';
+        // eslint-disable-next-line prefer-destructuring
+        window.location.href = topUrl.split(redirectUrl)[0];
+        yield put(routerRedux.replace('/'));
+      } else {
+        notification.error({
+          message: response.msg,
+        });
+      }
+    },
     *getCaptcha({ payload }, { call }) {
       yield call(getFakeCaptcha, payload);
     },
@@ -95,16 +119,15 @@ export default {
   reducers: {
     changeLoginStatus(state, { payload }) {
       const { status, type } = payload;
-
       if (status) {
         const {
-          data: { tokenType, accessToken, authority, account, userName, avatar },
+          data: { tokenType, accessToken, authority, account, userId, oauthId, userName, avatar },
         } = payload;
         const token = `${tokenType} ${accessToken}`;
         setToken(token);
         setAccessToken(accessToken);
         setAuthority(authority);
-        setCurrentUser({ avatar, account, name: userName, authority });
+        setCurrentUser({ avatar, userId, oauthId, account, name: userName, authority });
       } else {
         removeAll();
       }
