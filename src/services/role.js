@@ -15,7 +15,7 @@ export async function tree(params) {
 export async function grant(params) {
   return request('/api/blade-system/role/grant', {
     method: 'POST',
-    body: func.toFormData(params),
+    body: params,
   });
 }
 

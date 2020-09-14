@@ -112,6 +112,11 @@ class TenantEdit extends PureComponent {
                 initialValue: detail.address,
               })(<TextArea style={{ minHeight: 32 }} rows={3} placeholder="请输入联系地址" />)}
             </FormItem>
+            <FormItem {...formItemLayout} label="绑定域名">
+              {getFieldDecorator('domain', {
+                initialValue: detail.domain,
+              })(<Input placeholder="请输入绑定域名" />)}
+            </FormItem>
           </Card>
         </Form>
       </Panel>

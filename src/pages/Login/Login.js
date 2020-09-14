@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'dva';
 import { formatMessage, FormattedMessage } from 'umi/locale';
-import { Checkbox, Alert, Icon, Row, Col, Card, Spin } from 'antd';
+import { Checkbox, Alert, Icon, Row, Col, Card } from 'antd';
 import Login from '../../components/Login';
 import styles from './Login.less';
 import { tenantMode, captchaMode, authUrl } from '../../defaultSettings';
@@ -9,8 +9,9 @@ import { getQueryString, getTopUrl, validateNull } from '@/utils/utils';
 
 const { Tab, TenantId, UserName, Password, Captcha, Submit } = Login;
 
-@connect(({ login, loading }) => ({
+@connect(({ login, tenant, loading }) => ({
   login,
+  tenant,
   submitting: loading.effects['login/login'],
 }))
 class LoginPage extends Component {
@@ -46,6 +47,10 @@ class LoginPage extends Component {
         type: 'menu/fetchMenuData',
         payload: { routes, authority },
       });
+      dispatch({
+        type: 'tenant/fetchInfo',
+        payload: { domain },
+      });
     }
   }
 
@@ -73,10 +78,13 @@ class LoginPage extends Component {
   handleSubmit = (err, values) => {
     const { type } = this.state;
     if (!err) {
-      const { dispatch } = this.props;
+      const { dispatch,
+        tenant: { info } } = this.props;
+      const { tenantId } = info;
       dispatch({
         type: 'login/login',
         payload: {
+          tenantId,
           ...values,
           type,
         },
@@ -99,8 +107,14 @@ class LoginPage extends Component {
   );
 
   render() {
-    const { login, submitting } = this.props;
-    const { type, autoLogin, loading } = this.state;
+    const {
+      login,
+      submitting,
+      tenant: { info },
+    } = this.props;
+    const { type, autoLogin } = this.state;
+    const { tenantId } = info;
+    const tenantVisible = tenantMode && tenantId === '000000';
     return (
       <div className={styles.main}>
         <Login
@@ -116,10 +130,10 @@ class LoginPage extends Component {
               login.type === 'account' &&
               !submitting &&
               this.renderMessage(formatMessage({ id: 'app.login.message-invalid-credentials' }))}
-            {tenantMode ? (
+            {tenantVisible ? (
               <TenantId
                 name="tenantId"
-                defaultValue="000000"
+                defaultValue={`${tenantId}`}
                 placeholder={`${formatMessage({ id: 'app.login.tenantId' })}: 000000`}
                 rules={[
                   {

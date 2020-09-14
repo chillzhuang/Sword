@@ -20,14 +20,14 @@ class Workplace extends PureComponent {
           <Row gutter={24}>
             <Col span={24}>
               <div style={{ textAlign: 'center' }}>
-                <img src="https://img.shields.io/badge/Release-V2.7.1-green.svg" alt="Downloads" />
+                <img src="https://img.shields.io/badge/Release-V2.7.3-green.svg" alt="Downloads" />
                 <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status" />
                 <img
-                  src="https://img.shields.io/badge/Spring%20Cloud-Hoxton.SR5-blue.svg"
+                  src="https://img.shields.io/badge/Spring%20Cloud-Hoxton.SR8-blue.svg"
                   alt="Coverage Status"
                 />
                 <img
-                  src="https://img.shields.io/badge/Spring%20Boot-2.2.7.RELEASE-blue.svg"
+                  src="https://img.shields.io/badge/Spring%20Boot-2.2.9.RELEASE-blue.svg"
                   alt="Downloads"
                 />
                 <a href="https://bladex.vip">
@@ -212,7 +212,16 @@ class Workplace extends PureComponent {
             </Row>
             <Row gutter={24}>
               <Card className={styles.card} bordered={false}>
-                <Collapse bordered={false} defaultActiveKey={['19']}>
+                <Collapse bordered={false} defaultActiveKey={['20']}>
+                  <Panel header="2.7.3发布 增强多租户功能" key="20">
+                    <div>1.升级至 SpringCloud Hoxton.SR8</div>
+                    <div>2.升级至 Mybatis-Plus 3.4.0</div>
+                    <div>3.重构Mybatis-Plus封装适配最新版</div>
+                    <div>4.多租户增加域名绑定功能</div>
+                    <div>5.创建多租户的同时创建对应的管理用户</div>
+                    <div>6.优化日志模块分页排序</div>
+                    <div>7.关闭日志模块外置api放行</div>
+                  </Panel>
                   <Panel header="2.7.2发布 集成JustAuth支持第三方登录" key="19">
                     <div>1.升级至 SpringCloud Hoxton.SR7</div>
                     <div>2.升级至 SpringBoot 2.2.9.RELEASE</div>

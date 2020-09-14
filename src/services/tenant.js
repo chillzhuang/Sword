@@ -27,3 +27,7 @@ export async function remove(params) {
     body: func.toFormData(params),
   });
 }
+
+export async function info(params) {
+  return request(`/api/blade-system/tenant/info?${stringify(params)}`);
+}

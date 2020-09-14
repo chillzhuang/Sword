@@ -1,7 +1,7 @@
 import { message } from 'antd';
 import router from 'umi/router';
 import { TENANT_NAMESPACE } from '../actions/tenant';
-import { list, submit, detail, remove } from '../services/tenant';
+import { list, submit, detail, remove, info } from '../services/tenant';
 
 export default {
   namespace: TENANT_NAMESPACE,
@@ -11,6 +11,9 @@ export default {
       pagination: false,
     },
     detail: {},
+    info: {
+      tenantId: '000000',
+    },
   },
   effects: {
     *fetchList({ payload }, { call, put }) {
@@ -36,6 +39,17 @@ export default {
           type: 'saveDetail',
           payload: {
             detail: response.data,
+          },
+        });
+      }
+    },
+    *fetchInfo({ payload }, { call, put }) {
+      const response = yield call(info, payload);
+      if (response.success && response.data.tenantId) {
+        yield put({
+          type: 'saveInfo',
+          payload: {
+            info: response.data,
           },
         });
       }
@@ -75,6 +89,12 @@ export default {
       return {
         ...state,
         detail: action.payload.detail,
+      };
+    },
+    saveInfo(state, action) {
+      return {
+        ...state,
+        info: action.payload.info,
       };
     },
     removeDetail(state) {

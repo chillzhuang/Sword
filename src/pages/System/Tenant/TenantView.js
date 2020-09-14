@@ -74,6 +74,9 @@ class TenantView extends PureComponent {
             <FormItem {...formItemLayout} label="联系地址">
               <span>{detail.address}</span>
             </FormItem>
+            <FormItem {...formItemLayout} label="绑定域名">
+              <span>{detail.domain}</span>
+            </FormItem>
           </Card>
         </Form>
       </Panel>

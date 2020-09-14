@@ -69,7 +69,7 @@ class Role extends PureComponent {
 
     const { dispatch } = this.props;
     dispatch(
-      ROLE_GRANT({ roleIds: keys[0], menuIds: roleCheckedTreeKeys }, () => {
+      ROLE_GRANT({ roleIds: keys, menuIds: roleCheckedTreeKeys }, () => {
         this.setState({
           visible: false,
           confirmLoading: false,

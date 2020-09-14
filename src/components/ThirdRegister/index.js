@@ -1,12 +1,12 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
+import router from 'umi/router';
 import { Card, Col, Form, Input, Modal, Button, Row, message } from 'antd';
 import styles from '@/layouts/Sword.less';
 import { getCurrentUser, removeAll } from '@/utils/authority';
 import { validateNull } from '@/utils/utils';
 import { tenantMode } from '@/defaultSettings';
 import { getUserInfo, registerGuest } from '@/services/user';
-import router from 'umi/router';
 
 const FormItem = Form.Item;
 
@@ -23,7 +23,10 @@ class ThirdRegister extends PureComponent {
 
   componentDidMount() {
     const user = getCurrentUser();
-    if (validateNull(user) || validateNull(user.userId) || user.userId < 0) {
+    if (validateNull(user)) {
+      removeAll();
+      router.push('/user/login');
+    } else if (validateNull(user.userId) || user.userId < 0) {
       // 第三方注册用户，弹出注册框
       this.setState({ visible: true, user });
     } else {
@@ -60,9 +63,7 @@ class ThirdRegister extends PureComponent {
   };
 
   render() {
-    const {
-      form,
-    } = this.props;
+    const { form } = this.props;
 
     const { loading, visible, user } = this.state;
 
@@ -113,7 +114,7 @@ class ThirdRegister extends PureComponent {
                           message: '请输入租户编号',
                         },
                       ],
-                    })(<Input placeholder="请输入租户编号" />)}
+                    })(<Input placeholder="请输入租户编号"/>)}
                   </FormItem>
                 </Col>
               </Row>
@@ -129,7 +130,7 @@ class ThirdRegister extends PureComponent {
                       },
                     ],
                     initialValue: user.name,
-                  })(<Input placeholder="请输入用户姓名" />)}
+                  })(<Input placeholder="请输入用户姓名"/>)}
                 </FormItem>
               </Col>
               <Col span={10}>
@@ -142,7 +143,7 @@ class ThirdRegister extends PureComponent {
                       },
                     ],
                     initialValue: user.account,
-                  })(<Input placeholder="请输入账号名称" />)}
+                  })(<Input placeholder="请输入账号名称"/>)}
                 </FormItem>
               </Col>
             </Row>
@@ -156,7 +157,7 @@ class ThirdRegister extends PureComponent {
                         message: '请输入密码',
                       },
                     ],
-                  })(<Input placeholder="请输入账号密码" />)}
+                  })(<Input placeholder="请输入账号密码"/>)}
                 </FormItem>
               </Col>
               <Col span={10}>
@@ -168,7 +169,7 @@ class ThirdRegister extends PureComponent {
                         message: '请输入确认密码',
                       },
                     ],
-                  })(<Input placeholder="请确认账号密码" />)}
+                  })(<Input placeholder="请确认账号密码"/>)}
                 </FormItem>
               </Col>
             </Row>
@@ -178,4 +179,5 @@ class ThirdRegister extends PureComponent {
     );
   }
 }
+
 export default ThirdRegister;
