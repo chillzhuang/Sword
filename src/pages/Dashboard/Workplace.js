@@ -20,14 +20,14 @@ class Workplace extends PureComponent {
           <Row gutter={24}>
             <Col span={24}>
               <div style={{ textAlign: 'center' }}>
-                <img src="https://img.shields.io/badge/Release-V2.7.3-green.svg" alt="Downloads" />
+                <img src="https://img.shields.io/badge/Release-V2.8.0-green.svg" alt="Downloads" />
                 <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status" />
                 <img
                   src="https://img.shields.io/badge/Spring%20Cloud-Hoxton.SR8-blue.svg"
                   alt="Coverage Status"
                 />
                 <img
-                  src="https://img.shields.io/badge/Spring%20Boot-2.2.9.RELEASE-blue.svg"
+                  src="https://img.shields.io/badge/Spring%20Boot-2.2.11.RELEASE-blue.svg"
                   alt="Downloads"
                 />
                 <a href="https://bladex.vip">
@@ -212,7 +212,25 @@ class Workplace extends PureComponent {
             </Row>
             <Row gutter={24}>
               <Card className={styles.card} bordered={false}>
-                <Collapse bordered={false} defaultActiveKey={['20']}>
+                <Collapse bordered={false} defaultActiveKey={['21']}>
+                  <Panel header="2.8.0发布 增加在线报表模块" key="21">
+                    <div>1.升级 SpringBoot 至 2.2.11.RELEASE</div>
+                    <div>2.升级 SpringCloud 至 Hoxton.SR8</div>
+                    <div>3.升级 AlibabaCloud 至 2.2.3.RELEASE</div>
+                    <div>4.升级 Knife4j 至 2.0.6</div>
+                    <div>5.升级 Swagger 至 2.10.5</div>
+                    <div>6.升级 SwaggerModel 至 1.6.2</div>
+                    <div>7.升级 SpringPlugin 至 2.2.0.RELEASE</div>
+                    <div>8.升级 JustAuth 至 1.15.8</div>
+                    <div>9.升级 FastJson 至 1.2.74</div>
+                    <div>10.升级 Guava 至 30.0-jre</div>
+                    <div>11.升级 JJWT 至 0.11.2</div>
+                    <div>12.集成UReport2，新增在线报表模块</div>
+                    <div>13.优化Swagger封装以支持Knife4j最新API</div>
+                    <div>14.引入Knife4j增强配置,生产环境将完全隔离文档访问</div>
+                    <div>15.优化架构，适配最新版本API</div>
+                    <div>16.优化部署脚本</div>
+                  </Panel>
                   <Panel header="2.7.3发布 增强多租户功能" key="20">
                     <div>1.升级至 SpringCloud Hoxton.SR8</div>
                     <div>2.升级至 Mybatis-Plus 3.4.0</div>

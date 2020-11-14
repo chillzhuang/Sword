@@ -78,8 +78,10 @@ class LoginPage extends Component {
   handleSubmit = (err, values) => {
     const { type } = this.state;
     if (!err) {
-      const { dispatch,
-        tenant: { info } } = this.props;
+      const {
+        dispatch,
+        tenant: { info },
+      } = this.props;
       const { tenantId } = info;
       dispatch({
         type: 'login/login',

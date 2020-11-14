@@ -237,6 +237,15 @@ export default [
         ],
       },
       {
+        path: '/report',
+        routes: [
+          {
+            path: '/report/reportlist',
+            routes: [{ path: '/report/reportlist', component: './Report/Report' }],
+          },
+        ],
+      },
+      {
         path: '/tool',
         routes: [
           {

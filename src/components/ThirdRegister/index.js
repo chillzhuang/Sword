@@ -114,7 +114,7 @@ class ThirdRegister extends PureComponent {
                           message: '请输入租户编号',
                         },
                       ],
-                    })(<Input placeholder="请输入租户编号"/>)}
+                    })(<Input placeholder="请输入租户编号" />)}
                   </FormItem>
                 </Col>
               </Row>
@@ -130,7 +130,7 @@ class ThirdRegister extends PureComponent {
                       },
                     ],
                     initialValue: user.name,
-                  })(<Input placeholder="请输入用户姓名"/>)}
+                  })(<Input placeholder="请输入用户姓名" />)}
                 </FormItem>
               </Col>
               <Col span={10}>
@@ -143,7 +143,7 @@ class ThirdRegister extends PureComponent {
                       },
                     ],
                     initialValue: user.account,
-                  })(<Input placeholder="请输入账号名称"/>)}
+                  })(<Input placeholder="请输入账号名称" />)}
                 </FormItem>
               </Col>
             </Row>
@@ -157,7 +157,7 @@ class ThirdRegister extends PureComponent {
                         message: '请输入密码',
                       },
                     ],
-                  })(<Input placeholder="请输入账号密码"/>)}
+                  })(<Input placeholder="请输入账号密码" />)}
                 </FormItem>
               </Col>
               <Col span={10}>
@@ -169,7 +169,7 @@ class ThirdRegister extends PureComponent {
                         message: '请输入确认密码',
                       },
                     ],
-                  })(<Input placeholder="请确认账号密码"/>)}
+                  })(<Input placeholder="请确认账号密码" />)}
                 </FormItem>
               </Col>
             </Row>
