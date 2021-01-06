@@ -20,14 +20,14 @@ class Workplace extends PureComponent {
           <Row gutter={24}>
             <Col span={24}>
               <div style={{ textAlign: 'center' }}>
-                <img src="https://img.shields.io/badge/Release-V2.8.0-green.svg" alt="Downloads" />
+                <img src="https://img.shields.io/badge/Release-V3.0.0-green.svg" alt="Downloads" />
                 <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status" />
                 <img
-                  src="https://img.shields.io/badge/Spring%20Cloud-Hoxton.SR8-blue.svg"
+                  src="https://img.shields.io/badge/Spring%20Cloud-2020-blue.svg"
                   alt="Coverage Status"
                 />
                 <img
-                  src="https://img.shields.io/badge/Spring%20Boot-2.2.11.RELEASE-blue.svg"
+                  src="https://img.shields.io/badge/Spring%20Boot-2.4.1.RELEASE-blue.svg"
                   alt="Downloads"
                 />
                 <a href="https://bladex.vip">
@@ -212,7 +212,26 @@ class Workplace extends PureComponent {
             </Row>
             <Row gutter={24}>
               <Card className={styles.card} bordered={false}>
-                <Collapse bordered={false} defaultActiveKey={['21']}>
+                <Collapse bordered={false} defaultActiveKey={['22']}>
+                  <Panel header="3.0.0.发布 架构升级适配SpringCloud2020" key="22">
+                    <div>1.升级 SpringBoot 至 2.4.1</div>
+                    <div>2.升级 SpringCloud 至 2020.0.0</div>
+                    <div>3.升级 SpringBootAdmin 至 2.3.1</div>
+                    <div>4.升级 Junit 至 5.7.0</div>
+                    <div>5.升级 Mybatis-Plus 至 3.4.1</div>
+                    <div>6.升级 Knife4j 至 2.0.8</div>
+                    <div>7.升级 Seata 至 1.4.1</div>
+                    <div>8.升级 Avue 至 2.7.5</div>
+                    <div>9.新增Sentinel自动熔断逻辑</div>
+                    <div>10.新增Sentinel全局限流控制器</div>
+                    <div>11.新增BladeCloudApplication注解</div>
+                    <div>12.重构Feign自动熔断逻辑以适配最新API</div>
+                    <div>13.重构Junit统一运行器以适配最新API</div>
+                    <div>14.重构Seata部分模块以适配最新API</div>
+                    <div>15.修改配置文件以适配最新API</div>
+                    <div>16.优化Gateway全局异常处理器</div>
+                    <div>17.优化部署脚本</div>
+                  </Panel>
                   <Panel header="2.8.0发布 增加在线报表模块" key="21">
                     <div>1.升级 SpringBoot 至 2.2.11.RELEASE</div>
                     <div>2.升级 SpringCloud 至 Hoxton.SR8</div>
