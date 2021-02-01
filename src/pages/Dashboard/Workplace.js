@@ -212,7 +212,20 @@ class Workplace extends PureComponent {
             </Row>
             <Row gutter={24}>
               <Card className={styles.card} bordered={false}>
-                <Collapse bordered={false} defaultActiveKey={['22']}>
+                <Collapse bordered={false} defaultActiveKey={['23']}>
+                  <Panel header="3.0.1.发布 新增Swagger独立网关，优化代码生成" key="23">
+                    <div>1.升级 SpringBoot 至 2.4.2</div>
+                    <div>2.升级 SpringCloud 至 2020.0.1</div>
+                    <div>3.升级 Mybatis-Plus 至 3.4.2</div>
+                    <div>4.升级 Avue 至 2.7.6</div>
+                    <div>5.升级适配 Knife4j 2.0.8</div>
+                    <div>6.新增独立的Swagger网关</div>
+                    <div>7.新增代码生成的SqlServer驱动判断</div>
+                    <div>8.新增代码生成菜单Sql的ID</div>
+                    <div>9.优化SentinelFeign实现以适配最新API</div>
+                    <div>10.优化Saber个人中心实现以适配最新API</div>
+                    <div>11.修复Saber菜单图标选择失效的问题</div>
+                  </Panel>
                   <Panel header="3.0.0.发布 架构升级适配SpringCloud2020" key="22">
                     <div>1.升级 SpringBoot 至 2.4.1</div>
                     <div>2.升级 SpringCloud 至 2020.0.0</div>
