@@ -212,7 +212,21 @@ class Workplace extends PureComponent {
             </Row>
             <Row gutter={24}>
               <Card className={styles.card} bordered={false}>
-                <Collapse bordered={false} defaultActiveKey={['23']}>
+                <Collapse bordered={false} defaultActiveKey={['24']}>
+                  <Panel header="3.0.2.发布 支持Nacos2.0长链接特性" key="24">
+                    <div>1.升级 SpringBoot 至 2.4.4</div>
+                    <div>2.升级 SpringCloud 至 2020.0.2</div>
+                    <div>3.升级 AlibabaCloud 至 2.2.5.RELEASE</div>
+                    <div>4.升级 FastJson 至 1.2.75</div>
+                    <div>5.升级 Avue 至 2.8.2</div>
+                    <div>6.升级 ElementUI 至 2.15.1</div>
+                    <div>7.新增支持Nacos2.0长链接特性</div>
+                    <div>8.优化七牛云地域配置为自动获取</div>
+                    <div>9.优化Xss过滤支持通配符匹配逻辑</div>
+                    <div>10.优化接口放行支持通配符匹配逻辑</div>
+                    <div>11.修复Feign请求头传递丢失的问题</div>
+                    <div>12.修复用户管理导出查询功能失效的问题</div>
+                  </Panel>
                   <Panel header="3.0.1.发布 新增Swagger独立网关，优化代码生成" key="23">
                     <div>1.升级 SpringBoot 至 2.4.2</div>
                     <div>2.升级 SpringCloud 至 2020.0.1</div>
