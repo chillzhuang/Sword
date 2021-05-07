@@ -1,12 +1,11 @@
-FROM circleci/node:latest-browsers
+FROM nginx:stable-alpine-perl
 
-WORKDIR /usr/src/app/
-USER root
-COPY package.json ./
-RUN yarn
+RUN rm -f /etc/nginx/nginx.conf \
+    && rm -f /etc/nginx/conf.d/default.conf
+COPY docker/nginx.k8s.conf /etc/nginx/nginx.conf
 
-COPY ./ ./
+EXPOSE 80
 
-RUN npm run test:all
+COPY ./dist /usr/share/nginx/html
 
-CMD ["npm", "run", "build"]
+ENTRYPOINT ["nginx", "-g", "daemon off;"]
