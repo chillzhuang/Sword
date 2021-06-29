@@ -20,14 +20,14 @@ class Workplace extends PureComponent {
           <Row gutter={24}>
             <Col span={24}>
               <div style={{ textAlign: 'center' }}>
-                <img src="https://img.shields.io/badge/Release-V3.0.3-green.svg" alt="Downloads" />
+                <img src="https://img.shields.io/badge/Release-V3.1.0-green.svg" alt="Downloads" />
                 <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status" />
                 <img
                   src="https://img.shields.io/badge/Spring%20Cloud-2020-blue.svg"
                   alt="Coverage Status"
                 />
                 <img
-                  src="https://img.shields.io/badge/Spring%20Boot-2.4.4.RELEASE-blue.svg"
+                  src="https://img.shields.io/badge/Spring%20Boot-2.5.2.RELEASE-blue.svg"
                   alt="Downloads"
                 />
                 <a href="https://bladex.vip">
@@ -212,7 +212,18 @@ class Workplace extends PureComponent {
             </Row>
             <Row gutter={24}>
               <Card className={styles.card} bordered={false}>
-                <Collapse bordered={false} defaultActiveKey={['25']}>
+                <Collapse bordered={false} defaultActiveKey={['26']}>
+                  <Panel header="3.1.0发布 底层架构升级适配" key="26">
+                    <div>1.升级 SpringBoot 至 2.5.2</div>
+                    <div>2.升级 SpringBootAdmin 至 2.4.2</div>
+                    <div>3.升级 SpringCloud 至 2020.0.3</div>
+                    <div>4.升级 AlibabaCloud 至 2021.1</div>
+                    <div>5.升级 Nacos 至 2.0.2</div>
+                    <div>6.升级 Seata 至 1.4.2</div>
+                    <div>7.升级 Mybatis-Plus 至 3.4.3.1</div>
+                    <div>8.优化适配各新版本API变动</div>
+                    <div>9.移除部分过时的配置</div>
+                  </Panel>
                   <Panel header="3.0.3发布 新增kuboard-k8s脚本一键部署方案" key="25">
                     <div>1.新增blade-develop的dockerfile</div>
                     <div>2.新增blade-develop推送docker配置</div>
