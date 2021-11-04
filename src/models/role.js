@@ -1,7 +1,7 @@
 import { message } from 'antd';
 import router from 'umi/router';
 import { ROLE_NAMESPACE } from '../actions/role';
-import { list, submit, detail, remove, tree, grant } from '../services/role';
+import { list, submit, detail, remove, tree, treeById, grant } from '../services/role';
 import { grantTree, roleTreeKeys, dynamicRoutes, dynamicButtons } from '../services/menu';
 import { setButtons, setRoutes } from '../utils/authority';
 import { formatButtons, formatRoutes } from '../utils/utils';
@@ -17,8 +17,10 @@ export default {
       tree: [],
     },
     detail: {},
-    grantTree: [],
-    roleCheckedTreeKeys: [],
+    menuGrantTree: [],
+    menuTreeKeys: [],
+    dataScopeGrantTree: [],
+    dataScopeTreeKeys: [],
   },
   effects: {
     *fetchList({ payload }, { call, put }) {
@@ -35,6 +37,17 @@ export default {
     },
     *fetchInit({ payload }, { call, put }) {
       const response = yield call(tree, payload);
+      if (response.success) {
+        yield put({
+          type: 'saveInit',
+          payload: {
+            tree: response.data,
+          },
+        });
+      }
+    },
+    *fetchInitById({ payload }, { call, put }) {
+      const response = yield call(treeById, payload);
       if (response.success) {
         yield put({
           type: 'saveInit',
@@ -66,7 +79,8 @@ export default {
       yield put({
         type: 'save',
         payload: {
-          grantTree: response.data,
+          menuGrantTree: response.data.menu,
+          dataScopeGrantTree: response.data.dataScope,
         },
       });
     },
@@ -75,7 +89,8 @@ export default {
       yield put({
         type: 'save',
         payload: {
-          roleCheckedTreeKeys: response.data,
+          menuTreeKeys: response.data.menu,
+          dataScopeTreeKeys: response.data.dataScope,
         },
       });
     },
@@ -83,7 +98,8 @@ export default {
       yield put({
         type: 'save',
         payload: {
-          roleCheckedTreeKeys: payload.roleCheckedTreeKeys,
+          menuTreeKeys: payload.menuTreeKeys,
+          dataScopeTreeKeys: payload.dataScopeTreeKeys,
         },
       });
     },

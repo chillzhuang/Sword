@@ -13,4 +13,5 @@ export default {
   'button.role.name': '角色配置',
   'button.reset-password.name': '密碼重置',
   'button.back.name': '返回',
+  'button.setting.name': '配置',
 };

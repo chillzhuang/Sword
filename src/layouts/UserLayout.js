@@ -27,7 +27,7 @@ const links = [
 
 const copyright = (
   <Fragment>
-    Copyright <Icon type="copyright" /> 2020 SpringBlade{' '}
+    Copyright <Icon type="copyright" /> 2021 SpringBlade{' '}
     <a
       key="github"
       title="git"

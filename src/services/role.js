@@ -12,6 +12,10 @@ export async function tree(params) {
   return request(`/api/blade-system/role/tree?${stringify(params)}`);
 }
 
+export async function treeById(params) {
+  return request(`/api/blade-system/role/tree-by-id?${stringify(params)}`);
+}
+
 export async function grant(params) {
   return request('/api/blade-system/role/grant', {
     method: 'POST',

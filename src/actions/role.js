@@ -14,6 +14,13 @@ export function ROLE_INIT() {
   };
 }
 
+export function ROLE_INIT_BY_ID(roleId) {
+  return {
+    type: `${ROLE_NAMESPACE}/fetchInitById`,
+    payload: { roleId },
+  };
+}
+
 export function ROLE_DETAIL(id) {
   return {
     type: `${ROLE_NAMESPACE}/fetchDetail`,

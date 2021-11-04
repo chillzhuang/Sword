@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'dva';
-import { Button, Col, Form, Input, message, Modal, Row, Tree } from 'antd';
+import { Button, Col, Form, Input, message, Modal, Row, Tree, Tabs } from 'antd';
 import Panel from '../../../components/Panel';
 import Grid from '../../../components/Sword/Grid';
 import {
@@ -15,6 +15,7 @@ import { tenantMode } from '../../../defaultSettings';
 
 const FormItem = Form.Item;
 const { TreeNode } = Tree;
+const { TabPane } = Tabs;
 
 @connect(({ role, loading }) => ({
   role,
@@ -53,13 +54,8 @@ class Role extends PureComponent {
   // ========== 权限配置  =============
   handleGrant = () => {
     const {
-      role: { roleCheckedTreeKeys },
+      role: { menuTreeKeys, dataScopeTreeKeys },
     } = this.props;
-
-    if (roleCheckedTreeKeys.length === 0) {
-      message.warn('权限未变更无需操作');
-      return false;
-    }
 
     const keys = this.getSelectKeys();
 
@@ -69,14 +65,21 @@ class Role extends PureComponent {
 
     const { dispatch } = this.props;
     dispatch(
-      ROLE_GRANT({ roleIds: keys, menuIds: roleCheckedTreeKeys }, () => {
-        this.setState({
-          visible: false,
-          confirmLoading: false,
-        });
-        message.success('配置成功');
-        dispatch(MENU_REFRESH_DATA());
-      })
+      ROLE_GRANT(
+        {
+          roleIds: keys,
+          menuIds: menuTreeKeys,
+          dataScopeIds: dataScopeTreeKeys,
+        },
+        () => {
+          this.setState({
+            visible: false,
+            confirmLoading: false,
+          });
+          message.success('配置成功');
+          dispatch(MENU_REFRESH_DATA());
+        }
+      )
     );
     return true;
   };
@@ -100,15 +103,30 @@ class Role extends PureComponent {
 
   handleCancel = () => {
     const { dispatch } = this.props;
-    dispatch(ROLE_SET_TREE_KEYS({ roleCheckedTreeKeys: [] }));
+    dispatch(ROLE_SET_TREE_KEYS({ menuTreeKeys: [], dataScopeTreeKeys: [], apiScopeTreeKeys: [] }));
     this.setState({
       visible: false,
     });
   };
 
-  onCheck = checkedTreeKeys => {
-    const { dispatch } = this.props;
-    dispatch(ROLE_SET_TREE_KEYS({ roleCheckedTreeKeys: checkedTreeKeys }));
+  onMenuCheck = checkedTreeKeys => {
+    const {
+      dispatch,
+      role: { dataScopeTreeKeys, apiScopeTreeKeys },
+    } = this.props;
+    dispatch(
+      ROLE_SET_TREE_KEYS({ menuTreeKeys: checkedTreeKeys, dataScopeTreeKeys, apiScopeTreeKeys })
+    );
+  };
+
+  onDataScopeCheck = checkedTreeKeys => {
+    const {
+      dispatch,
+      role: { menuTreeKeys, apiScopeTreeKeys },
+    } = this.props;
+    dispatch(
+      ROLE_SET_TREE_KEYS({ dataScopeTreeKeys: checkedTreeKeys, menuTreeKeys, apiScopeTreeKeys })
+    );
   };
 
   // ============ 查询表单 ===============
@@ -173,7 +191,13 @@ class Role extends PureComponent {
     const {
       form,
       loading,
-      role: { data, grantTree, roleCheckedTreeKeys },
+      role: {
+        data,
+        menuGrantTree,
+        menuTreeKeys,
+        dataScopeGrantTree,
+        dataScopeTreeKeys,
+      },
     } = this.props;
 
     const columns = [
@@ -214,7 +238,7 @@ class Role extends PureComponent {
         />
         <Modal
           title="权限配置"
-          width={350}
+          width={380}
           visible={visible}
           confirmLoading={confirmLoading}
           onOk={this.handleGrant}
@@ -222,9 +246,18 @@ class Role extends PureComponent {
           okText="确认"
           cancelText="取消"
         >
-          <Tree checkable checkedKeys={roleCheckedTreeKeys} onCheck={this.onCheck}>
-            {this.renderTreeNodes(grantTree)}
-          </Tree>
+          <Tabs defaultActiveKey="1" size="small">
+            <TabPane tab="菜单权限" key="1">
+              <Tree checkable checkedKeys={menuTreeKeys} onCheck={this.onMenuCheck}>
+                {this.renderTreeNodes(menuGrantTree)}
+              </Tree>
+            </TabPane>
+            <TabPane tab="数据权限" key="2">
+              <Tree checkable checkedKeys={dataScopeTreeKeys} onCheck={this.onDataScopeCheck}>
+                {this.renderTreeNodes(dataScopeGrantTree)}
+              </Tree>
+            </TabPane>
+          </Tabs>
         </Modal>
       </Panel>
     );

@@ -13,4 +13,5 @@ export default {
   'button.role.name': 'grant role',
   'button.reset-password.name': 'reset password',
   'button.back.name': 'back',
+  'button.setting.name': 'setting',
 };

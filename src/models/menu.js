@@ -9,11 +9,14 @@ import {
   dynamicRoutes,
   dynamicButtons,
   list,
+  parentList,
   submit,
   detail,
   remove,
   tree,
+  dataScopeList,
 } from '../services/menu';
+import { dict } from '../services/dict';
 import { getRoutes, setRoutes, getButtons, setButtons } from '../utils/authority';
 import { MENU_NAMESPACE } from '../actions/menu';
 import { formatRoutes, formatButtons } from '../utils/utils';
@@ -119,7 +122,19 @@ export default {
     init: {
       tree: [],
     },
+    dict: {
+      dataScopeType: [],
+    },
     detail: {},
+    drawer: {
+      visible: false,
+      menuId: '',
+      menuName: '',
+      dataScope: {
+        list: [],
+        pagination: false,
+      },
+    },
   },
 
   effects: {
@@ -148,6 +163,18 @@ export default {
     },
     *fetchList({ payload }, { call, put }) {
       const response = yield call(list, payload);
+      if (response.success) {
+        yield put({
+          type: 'saveList',
+          payload: {
+            list: response.data,
+            pagination: false,
+          },
+        });
+      }
+    },
+    *fetchParentList({ payload }, { call, put }) {
+      const response = yield call(parentList, payload);
       if (response.success) {
         yield put({
           type: 'saveList',
@@ -193,6 +220,41 @@ export default {
           detail: payload,
         },
       });
+    },
+    *showDrawer({ payload }, { put }) {
+      yield put({
+        type: 'saveDrawer',
+        payload,
+      });
+    },
+    *loadDataScopeDrawer({ payload }, { call, put }) {
+      const response = yield call(dataScopeList, payload);
+      if (response.success) {
+        yield put({
+          type: 'saveLoadDataScopeDrawer',
+          payload: {
+            dataScope: {
+              list: response.data.records,
+              pagination: {
+                total: response.data.total,
+                current: response.data.current,
+                pageSize: response.data.size,
+              },
+            },
+          },
+        });
+      }
+    },
+    *loadDataScopeDict({ payload }, { call, put }) {
+      const response = yield call(dict, payload);
+      if (response.success) {
+        yield put({
+          type: 'saveDataScopeDict',
+          payload: {
+            dataScopeType: response.data,
+          },
+        });
+      }
     },
     *submit({ payload }, { call }) {
       const response = yield call(submit, payload);
@@ -241,6 +303,26 @@ export default {
     saveIcon(state, action) {
       const newState = state;
       newState.detail.source = action.payload.detail.source;
+      return {
+        ...newState,
+      };
+    },
+    saveDrawer(state, action) {
+      return {
+        ...state,
+        drawer: action.payload,
+      };
+    },
+    saveLoadDataScopeDrawer(state, action) {
+      const newState = state;
+      newState.drawer.dataScope = action.payload.dataScope;
+      return {
+        ...newState,
+      };
+    },
+    saveDataScopeDict(state, action) {
+      const newState = state;
+      newState.dict.dataScopeType = action.payload.dataScopeType;
       return {
         ...newState,
       };

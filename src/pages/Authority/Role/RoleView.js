@@ -29,7 +29,7 @@ class RoleView extends PureComponent {
         params: { id },
       },
     } = this.props;
-    router.push(`/system/role/edit/${id}`);
+    router.push(`/authority/role/edit/${id}`);
   };
 
   render() {
@@ -62,8 +62,8 @@ class RoleView extends PureComponent {
     );
 
     return (
-      <Panel title="查看" back="/system/role" action={action}>
-        <Form hideRequiredMark style={{ marginTop: 8 }}>
+      <Panel title="查看" back="/authority/role" action={action}>
+        <Form style={{ marginTop: 8 }}>
           <Card title="基本信息" className={styles.card} bordered={false}>
             <Row gutter={24}>
               <Col span={10}>

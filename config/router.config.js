@@ -103,6 +103,29 @@ export default [
         ],
       },
       {
+        path: '/authority',
+        routes: [
+          {
+            path: '/authority/role',
+            routes: [
+              { path: '/authority/role', redirect: '/authority/role/list' },
+              { path: '/authority/role/list', component: './Authority/Role/Role' },
+              { path: '/authority/role/add', component: './Authority/Role/RoleAdd' },
+              { path: '/authority/role/add/:id', component: './Authority/Role/RoleAdd' },
+              { path: '/authority/role/edit/:id', component: './Authority/Role/RoleEdit' },
+              { path: '/authority/role/view/:id', component: './Authority/Role/RoleView' },
+            ],
+          },
+          {
+            path: '/authority/datascope',
+            routes: [
+              { path: '/authority/datascope', redirect: '/authority/datascope/list' },
+              { path: '/authority/datascope/list', component: './Authority/DataScope/DataScope' },
+            ],
+          },
+        ],
+      },
+      {
         path: '/system',
         routes: [
           {
@@ -146,17 +169,6 @@ export default [
               { path: '/system/post/add/:id', component: './System/Post/PostAdd' },
               { path: '/system/post/edit/:id', component: './System/Post/PostEdit' },
               { path: '/system/post/view/:id', component: './System/Post/PostView' },
-            ],
-          },
-          {
-            path: '/system/role',
-            routes: [
-              { path: '/system/role', redirect: '/system/role/list' },
-              { path: '/system/role/list', component: './System/Role/Role' },
-              { path: '/system/role/add', component: './System/Role/RoleAdd' },
-              { path: '/system/role/add/:id', component: './System/Role/RoleAdd' },
-              { path: '/system/role/edit/:id', component: './System/Role/RoleEdit' },
-              { path: '/system/role/view/:id', component: './System/Role/RoleView' },
             ],
           },
           {
