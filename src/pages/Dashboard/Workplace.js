@@ -20,14 +20,14 @@ class Workplace extends PureComponent {
           <Row gutter={24}>
             <Col span={24}>
               <div style={{ textAlign: 'center' }}>
-                <img src="https://img.shields.io/badge/Release-V3.3.0-green.svg" alt="Downloads" />
+                <img src="https://img.shields.io/badge/Release-V3.3.1-green.svg" alt="Downloads" />
                 <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status" />
                 <img
                   src="https://img.shields.io/badge/Spring%20Cloud-2021-blue.svg"
                   alt="Coverage Status"
                 />
                 <img
-                  src="https://img.shields.io/badge/Spring%20Boot-2.6.3.RELEASE-blue.svg"
+                  src="https://img.shields.io/badge/Spring%20Boot-2.6.6.RELEASE-blue.svg"
                   alt="Downloads"
                 />
                 <a href="https://bladex.vip">
@@ -212,7 +212,12 @@ class Workplace extends PureComponent {
             </Row>
             <Row gutter={24}>
               <Card className={styles.card} bordered={false}>
-                <Collapse bordered={false} defaultActiveKey={['28']}>
+                <Collapse bordered={false} defaultActiveKey={['29']}>
+                  <Panel header="3.3.1发布 升级适配代码生成器API" key="29">
+                    <div>1.升级 SpringBoot 至 2.6.6</div>
+                    <div>2.升级 Mybatis-Plus-Generator 至 3.5.2</div>
+                    <div>3.代码生成适配最新版API</div>
+                  </Panel>
                   <Panel header="3.3.0发布 升级适配 SpringCloud 2021" key="28">
                     <div>1.升级 SpringBoot 至 2.6.3</div>
                     <div>2.升级 SpringBootAdmin 至 2.6.2</div>
