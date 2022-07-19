@@ -20,14 +20,14 @@ class Workplace extends PureComponent {
           <Row gutter={24}>
             <Col span={24}>
               <div style={{ textAlign: 'center' }}>
-                <img src="https://img.shields.io/badge/Release-V3.3.1-green.svg" alt="Downloads" />
+                <img src="https://img.shields.io/badge/Release-V3.4.0-green.svg" alt="Downloads" />
                 <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status" />
                 <img
                   src="https://img.shields.io/badge/Spring%20Cloud-2021-blue.svg"
                   alt="Coverage Status"
                 />
                 <img
-                  src="https://img.shields.io/badge/Spring%20Boot-2.6.6.RELEASE-blue.svg"
+                  src="https://img.shields.io/badge/Spring%20Boot-2.7.1.RELEASE-blue.svg"
                   alt="Downloads"
                 />
                 <a href="https://bladex.vip">
@@ -212,7 +212,19 @@ class Workplace extends PureComponent {
             </Row>
             <Row gutter={24}>
               <Card className={styles.card} bordered={false}>
-                <Collapse bordered={false} defaultActiveKey={['29']}>
+                <Collapse bordered={false} defaultActiveKey={['30']}>
+                  <Panel header="3.4.0发布 新增灰度服务功能" key="30">
+                    <div>1.升级 SpringCloud 至 2021.0.3</div>
+                    <div>2.升级 SpringBoot 至 2.7.1</div>
+                    <div>3.升级 SpringBootAdmin 至 2.7.1</div>
+                    <div>4.升级 Mybatis-Plus 至 3.5.2</div>
+                    <div>5.升级 Mybatis-Plus-Generator 至 3.5.3</div>
+                    <div>6.升级 Nacos 至 2.1.0</div>
+                    <div>7.升级 Seata 至 1.5.1.1</div>
+                    <div>8.升级 FastJson 至 1.2.83</div>
+                    <div>9.升级适配 SpringBoot 2.7.1 新版API</div>
+                    <div>10.新增基于 LoadBalancer 的灰度服务功能</div>
+                  </Panel>
                   <Panel header="3.3.1发布 升级适配代码生成器API" key="29">
                     <div>1.升级 SpringBoot 至 2.6.6</div>
                     <div>2.升级 Mybatis-Plus-Generator 至 3.5.2</div>
