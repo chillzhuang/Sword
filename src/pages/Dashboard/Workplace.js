@@ -20,7 +20,7 @@ class Workplace extends PureComponent {
           <Row gutter={24}>
             <Col span={24}>
               <div style={{ textAlign: 'center' }}>
-                <img src="https://img.shields.io/badge/Release-V3.4.1-green.svg" alt="Downloads" />
+                <img src="https://img.shields.io/badge/Release-V3.5.0-green.svg" alt="Downloads" />
                 <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status" />
                 <img
                   src="https://img.shields.io/badge/Spring%20Cloud-2021-blue.svg"
@@ -212,7 +212,14 @@ class Workplace extends PureComponent {
             </Row>
             <Row gutter={24}>
               <Card className={styles.card} bordered={false}>
-                <Collapse bordered={false} defaultActiveKey={['31']}>
+                <Collapse bordered={false} defaultActiveKey={['32']}>
+                  <Panel header="3.5.0发布 新增报文加密 令牌签名校验提示" key="32">
+                    <div>1.新增 报文加密功能</div>
+                    <div>2.新增 日志开关功能</div>
+                    <div>3.新增 Minio封装</div>
+                    <div>4.新增 Token签名校验</div>
+                    <div>5.重构 oss模块</div>
+                  </Panel>
                   <Panel header="3.4.1发布 重构Swagger封装" key="31">
                     <div>1.重构Swagger封装，适配cloud最新版</div>
                   </Panel>
