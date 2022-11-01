@@ -20,7 +20,7 @@ class Workplace extends PureComponent {
           <Row gutter={24}>
             <Col span={24}>
               <div style={{ textAlign: 'center' }}>
-                <img src="https://img.shields.io/badge/Release-V3.4.0-green.svg" alt="Downloads" />
+                <img src="https://img.shields.io/badge/Release-V3.4.1-green.svg" alt="Downloads" />
                 <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status" />
                 <img
                   src="https://img.shields.io/badge/Spring%20Cloud-2021-blue.svg"
@@ -212,7 +212,10 @@ class Workplace extends PureComponent {
             </Row>
             <Row gutter={24}>
               <Card className={styles.card} bordered={false}>
-                <Collapse bordered={false} defaultActiveKey={['30']}>
+                <Collapse bordered={false} defaultActiveKey={['31']}>
+                  <Panel header="3.4.1发布 重构Swagger封装" key="31">
+                    <div>1.重构Swagger封装，适配cloud最新版</div>
+                  </Panel>
                   <Panel header="3.4.0发布 新增灰度服务功能" key="30">
                     <div>1.升级 SpringCloud 至 2021.0.3</div>
                     <div>2.升级 SpringBoot 至 2.7.1</div>
