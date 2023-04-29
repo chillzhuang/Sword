@@ -1,6 +1,6 @@
 {
-  "name": "sword",
-  "version": "3.5.0",
+  "name": "sword-admin",
+  "version": "3.6.0",
   "description": "An out-of-box UI solution for enterprise applications",
   "private": true,
   "scripts": {
