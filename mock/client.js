@@ -10,7 +10,7 @@ function getFakeList(req, res) {
       clientSecret: 'sword_secret',
       scope: 'all',
       authorizedGrantTypes: 'refresh_token,password,authorization_code',
-      webServerRedirectUri: 'https://sword.bladex.vip',
+      webServerRedirectUri: 'https://sword.bladex.cn',
       accessTokenValidity: '3600',
       refreshTokenValidity: '36000',
     },
@@ -20,7 +20,7 @@ function getFakeList(req, res) {
       clientSecret: 'saber_secret',
       scope: 'all',
       authorizedGrantTypes: 'refresh_token,password,authorization_code',
-      webServerRedirectUri: 'https://saber.bladex.vip',
+      webServerRedirectUri: 'https://saber.bladex.cn',
       accessTokenValidity: '3600',
       refreshTokenValidity: '36000',
     }
@@ -44,7 +44,7 @@ function getFakeDetail(req, res) {
     clientSecret: 'sword_secret',
     scope: 'all',
     authorizedGrantTypes: 'refresh_token,password,authorization_code',
-    webServerRedirectUri: 'https://sword.bladex.vip',
+    webServerRedirectUri: 'https://sword.bladex.cn',
     accessTokenValidity: '3600',
     refreshTokenValidity: '36000',
   };

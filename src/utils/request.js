@@ -4,8 +4,9 @@ import router from 'umi/router';
 import hash from 'hash.js';
 import { Base64 } from 'js-base64';
 import { clientId, clientSecret } from '../defaultSettings';
-import { getToken, removeAll } from './authority';
+import { getAccessToken, getToken, removeAll } from './authority';
 import RequestForm from '@/utils/RequestForm';
+import crypto from '@/utils/crypto';
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -122,7 +123,15 @@ export default function request(url, option) {
     Authorization: `Basic ${Base64.encode(`${clientId}:${clientSecret}`)}`,
   };
 
-  const token = getToken();
+  // token鉴权
+  let token;
+  // 加密判断
+  if (newOptions.cryptoToken === true) {
+    token = `crypto ${crypto.encrypt(getAccessToken())}`;
+  } else {
+    token = getToken();
+  }
+
   if (token) {
     newOptions.headers = {
       ...newOptions.headers,

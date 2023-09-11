@@ -20,23 +20,23 @@ class Workplace extends PureComponent {
           <Row gutter={24}>
             <Col span={24}>
               <div style={{ textAlign: 'center' }}>
-                <img src="https://img.shields.io/badge/Release-V3.6.0-green.svg" alt="Downloads" />
+                <img src="https://img.shields.io/badge/Release-V3.7.0-green.svg" alt="Downloads" />
                 <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status" />
                 <img
                   src="https://img.shields.io/badge/Spring%20Cloud-2021-blue.svg"
                   alt="Coverage Status"
                 />
                 <img
-                  src="https://img.shields.io/badge/Spring%20Boot-2.7.1.RELEASE-blue.svg"
+                  src="https://img.shields.io/badge/Spring%20Boot-2.7.15-blue.svg"
                   alt="Downloads"
                 />
-                <a href="https://bladex.vip">
+                <a href="https://bladex.cn">
                   <img
                     src="https://img.shields.io/badge/Sword%20Author-Small%20Chill-ff69b4.svg"
                     alt="Downloads"
                   />
                 </a>
-                <a href="https://bladex.vip">
+                <a href="https://bladex.cn">
                   <img
                     src="https://img.shields.io/badge/Copyright%20-@BladeX-%23ff3f59.svg"
                     alt="Downloads"
@@ -64,7 +64,7 @@ class Workplace extends PureComponent {
                   <div>4.追求企业开发更加高效，部署更加方便，生产更加稳定</div>
                   <div>5.GVP-码云最有价值开源项目</div>
                   <div>
-                    6.BladeX授权地址:<a href="https://bladex.vip/#/vip">点击授权</a>
+                    6.BladeX授权地址:<a href="https://bladex.cn/#/vip">点击授权</a>
                   </div>
                 </Panel>
                 <Panel header="为何需要BladeX" key="3">
@@ -171,20 +171,20 @@ class Workplace extends PureComponent {
                 <Divider style={{ margin: '12px 0' }} />
                 <span>官网地址</span>
                 <Divider type="vertical" />
-                <a href="https://bladex.vip" target="_blank">
-                  https://bladex.vip
+                <a href="https://bladex.cn" target="_blank">
+                  https://bladex.cn
                 </a>
                 <Divider style={{ margin: '12px 0' }} />
                 <span>社区地址</span>
                 <Divider type="vertical" />
-                <a href="https://sns.bladex.vip" target="_blank">
-                  https://sns.bladex.vip
+                <a href="https://sns.bladex.cn" target="_blank">
+                  https://sns.bladex.cn
                 </a>
                 <Divider style={{ margin: '12px 0' }} />
                 <span>获取文档</span>
                 <Divider type="vertical" />
                 <Tag color="#91e253" style={{ cursor: 'pointer' }}>
-                  <a href="https://sns.bladex.vip/note/view/1.html" target="_blank">
+                  <a href="https://sns.bladex.cn/note/view/1.html" target="_blank">
                     免费版
                   </a>
                 </Tag>
@@ -204,7 +204,7 @@ class Workplace extends PureComponent {
                 </Tag>
                 <Divider type="vertical" />
                 <Tag color="#f50" style={{ cursor: 'pointer' }}>
-                  <a href="https://bladex.vip/#/vip" target="_blank">
+                  <a href="https://bladex.cn/#/vip" target="_blank">
                     商业版
                   </a>
                 </Tag>
@@ -212,7 +212,20 @@ class Workplace extends PureComponent {
             </Row>
             <Row gutter={24}>
               <Card className={styles.card} bordered={false}>
-                <Collapse bordered={false} defaultActiveKey={['33']}>
+                <Collapse bordered={false} defaultActiveKey={['34']}>
+                  <Panel header="3.7.0发布 新增Token加密传输功能" key="34">
+                    <div>1.升级 SpringCloud 至 2021.0.8</div>
+                    <div>2.升级 SpringBoot 至 2.7.15</div>
+                    <div>3.升级 Mybatis-Plus 至 3.5.3.2</div>
+                    <div>4.升级 Mybatis-Plus-Generator 至 3.5.3.2</div>
+                    <div>5.升级 Druid 至 1.2.19</div>
+                    <div>6.升级 Avue2 至 2.10.16</div>
+                    <div>7.升级 Avue3 至 3.2.19</div>
+                    <div>8.新增 Token加密传输功能，提升系统安全性</div>
+                    <div>9.新增 后端对Token加密增加强制校验的功能</div>
+                    <div>10.优化 INode树形节点封装，增加泛型支持</div>
+                    <div>11.优化 Sql防注入的功能</div>
+                  </Panel>
                   <Panel header="3.6.0发布 基于vue3的前端架构正式发布" key="33">
                     <div>1.升级 SpringCloud 至 2021.0.6</div>
                     <div>2.升级 SpringBoot 至 2.7.10</div>
