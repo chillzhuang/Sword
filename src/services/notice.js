@@ -5,11 +5,11 @@ import request from '../utils/request';
 // =====================通知公告===========================
 
 export async function queryProjectNotice(params = {}) {
-  return request(`/api/blade-desk/dashboard/notices?${stringify(params)}`, { cryptoToken: true });
+  return request(`/api/blade-desk/dashboard/notices?${stringify(params)}`, { cryptoToken: false });
 }
 
 export async function list(params) {
-  return request(`/api/blade-desk/notice/list?${stringify(params)}`, { cryptoToken: true });
+  return request(`/api/blade-desk/notice/list?${stringify(params)}`, { cryptoToken: false });
 }
 
 export async function remove(params) {
@@ -29,5 +29,5 @@ export async function submit(params) {
 }
 
 export async function detail(params) {
-  return request(`/api/blade-desk/notice/detail?${stringify(params)}`, { cryptoToken: true });
+  return request(`/api/blade-desk/notice/detail?${stringify(params)}`, { cryptoToken: false });
 }

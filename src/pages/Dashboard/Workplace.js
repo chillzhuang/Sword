@@ -20,14 +20,14 @@ class Workplace extends PureComponent {
           <Row gutter={24}>
             <Col span={24}>
               <div style={{ textAlign: 'center' }}>
-                <img src="https://img.shields.io/badge/Release-V3.7.0-green.svg" alt="Downloads" />
+                <img src="https://img.shields.io/badge/Release-V3.7.1-green.svg" alt="Downloads" />
                 <img src="https://img.shields.io/badge/JDK-1.8+-green.svg" alt="Build Status" />
                 <img
                   src="https://img.shields.io/badge/Spring%20Cloud-2021-blue.svg"
                   alt="Coverage Status"
                 />
                 <img
-                  src="https://img.shields.io/badge/Spring%20Boot-2.7.15-blue.svg"
+                  src="https://img.shields.io/badge/Spring%20Boot-2.7.18-blue.svg"
                   alt="Downloads"
                 />
                 <a href="https://bladex.cn">
@@ -212,7 +212,17 @@ class Workplace extends PureComponent {
             </Row>
             <Row gutter={24}>
               <Card className={styles.card} bordered={false}>
-                <Collapse bordered={false} defaultActiveKey={['34']}>
+                <Collapse bordered={false} defaultActiveKey={['35']}>
+                  <Panel header="3.7.1发布 升级系统安全性能" key="35">
+                    <div>1.升级 SpringBoot 至 2.7.18</div>
+                    <div>2.升级 SpringBootAdmin 至 2.7.14</div>
+                    <div>3.升级 Mybatis-Plus 至 3.5.4.1</div>
+                    <div>4.升级 Mybatis-Plus-Generator 至 3.5.4.1</div>
+                    <div>5.升级 Knife4j 至 4.3.0</div>
+                    <div>6.优化 防SQL注入逻辑避免双写等情况出现</div>
+                    <div>7.调整 重要API调用等级防止被恶意调用</div>
+                    <div>8.调整 默认关闭通知公告模块的Token加密功能</div>
+                  </Panel>
                   <Panel header="3.7.0发布 新增Token加密传输功能" key="34">
                     <div>1.升级 SpringCloud 至 2021.0.8</div>
                     <div>2.升级 SpringBoot 至 2.7.15</div>
