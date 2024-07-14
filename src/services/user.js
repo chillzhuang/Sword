@@ -3,11 +3,13 @@ import request from '../utils/request';
 import func from '../utils/Func';
 import { getCaptchaKey } from '../utils/authority';
 import { captchaMode } from '../defaultSettings';
+import encrypt from '../utils/sm2'
 
 // =====================用户===========================
 
 export async function accountLogin(params) {
   const values = params;
+  values.password = encrypt(params.password);
   values.grantType = captchaMode ? 'captcha' : 'password';
   values.scope = 'all';
   return request('/api/blade-auth/token', {
