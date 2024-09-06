@@ -18,7 +18,7 @@ module.exports = {
   pwa: true,
   auth: {
     // 使用后端工程 @org.springblade.test.Sm2KeyGenerator 获取
-    publicKey: '04e6862d0819ec55e9d7d8bb961ccc8c2b7d86b6845ac333d1d9ab8af6a892cebb3d30f952da4111971908eb02829459170bdd338e7a27fa57d6300dc290d052b5',
+    publicKey: '请配置国密sm2公钥',
   },
   // 第三方登陆授权地址
   authUrl: 'http://localhost/blade-auth/oauth/render',

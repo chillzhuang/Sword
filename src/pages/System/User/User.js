@@ -202,7 +202,7 @@ class User extends PureComponent {
         const account = params.account || '';
         const realName = params.realName || '';
         window.open(
-          `/api/blade-user/export-user?blade-auth=${getAccessToken()}&account=${account}&realName=${realName}`
+          `/api/blade-system/user/export-user?blade-auth=bearer ${getAccessToken()}&account=${account}&realName=${realName}`
         );
       },
       onCancel() {},
@@ -210,7 +210,7 @@ class User extends PureComponent {
   };
 
   handleTemplate = () => {
-    window.open(`/api/blade-user/export-template?blade-auth=${getAccessToken()}`);
+    window.open(`/api/blade-system/user/export-template?blade-auth=bearer ${getAccessToken()}`);
   };
 
   onUpload = info => {
@@ -257,7 +257,7 @@ class User extends PureComponent {
       headers: {
         'Blade-Auth': getToken(),
       },
-      action: '/api/blade-user/import-user',
+      action: '/api/blade-system/user/import-user',
     };
 
     const formItemLayout = {

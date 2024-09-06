@@ -35,7 +35,7 @@ export async function socialLogin(params) {
 export async function registerGuest(form, oauthId) {
   const values = form;
   values.oauthId = oauthId;
-  return request('/api/blade-user/register-guest', {
+  return request('/api/blade-system/user/register-guest', {
     method: 'POST',
     body: func.toFormData(values),
   });
@@ -50,54 +50,54 @@ export async function queryCurrent() {
 }
 
 export async function list(params) {
-  return request(`/api/blade-user/list?${stringify(params)}`);
+  return request(`/api/blade-system/user/list?${stringify(params)}`);
 }
 
 export async function grant(params) {
-  return request('/api/blade-user/grant', {
+  return request('/api/blade-system/user/grant', {
     method: 'POST',
     body: func.toFormData(params),
   });
 }
 
 export async function resetPassword(params) {
-  return request('/api/blade-user/reset-password', {
+  return request('/api/blade-system/user/reset-password', {
     method: 'POST',
     body: func.toFormData(params),
   });
 }
 
 export async function remove(params) {
-  return request('/api/blade-user/remove', {
+  return request('/api/blade-system/user/remove', {
     method: 'POST',
     body: func.toFormData(params),
   });
 }
 
 export async function submit(params) {
-  return request('/api/blade-user/submit', {
+  return request('/api/blade-system/user/submit', {
     method: 'POST',
     body: params,
   });
 }
 
 export async function update(params) {
-  return request('/api/blade-user/update', {
+  return request('/api/blade-system/user/update', {
     method: 'POST',
     body: params,
   });
 }
 
 export async function detail(params) {
-  return request(`/api/blade-user/detail?${stringify(params)}`);
+  return request(`/api/blade-system/user/detail?${stringify(params)}`);
 }
 
 export async function getUserInfo() {
-  return request('/api/blade-user/info');
+  return request('/api/blade-system/user/info');
 }
 
 export async function updatePassword(params) {
-  return request('/api/blade-user/update-password', {
+  return request('/api/blade-system/user/update-password', {
     method: 'POST',
     body: func.toFormData(params),
   });

@@ -71,13 +71,13 @@ function fakeSuccess(req, res) {
 
 // 代码中会兼容本地 service mock 以及部署站点的静态数据
 const proxy = {
-  'GET /api/blade-user/list': getFakeList,
-  'GET /api/blade-user/detail': getFakeDetail,
-  'POST /api/blade-user/grant': fakeSuccess,
-  'POST /api/blade-user/reset-password': fakeSuccess,
-  'POST /api/blade-user/submit': fakeSuccess,
-  'POST /api/blade-user/update': fakeSuccess,
-  'POST /api/blade-user/remove': fakeSuccess,
+  'GET /api/blade-system/user/list': getFakeList,
+  'GET /api/blade-system/user/detail': getFakeDetail,
+  'POST /api/blade-system/user/grant': fakeSuccess,
+  'POST /api/blade-system/user/reset-password': fakeSuccess,
+  'POST /api/blade-system/user/submit': fakeSuccess,
+  'POST /api/blade-system/user/update': fakeSuccess,
+  'POST /api/blade-system/user/remove': fakeSuccess,
 
   // 支持值为 Object 和 Array
   'GET /api/currentUser': {

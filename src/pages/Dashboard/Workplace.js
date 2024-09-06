@@ -20,7 +20,7 @@ class Workplace extends PureComponent {
           <Row gutter={24}>
             <Col span={24}>
               <div style={{ textAlign: 'center' }}>
-                <img src="https://img.shields.io/badge/Release-V4.1.0-green.svg" alt="Downloads" />
+                <img src="https://img.shields.io/badge/Release-V4.2.0-green.svg" alt="Downloads" />
                 <img src="https://img.shields.io/badge/JDK-17+-green.svg" alt="Build Status" />
                 <img
                   src="https://img.shields.io/badge/Spring%20Cloud-2023-blue.svg"
@@ -212,7 +212,17 @@ class Workplace extends PureComponent {
             </Row>
             <Row gutter={24}>
               <Card className={styles.card} bordered={false}>
-                <Collapse bordered={false} defaultActiveKey={['37']}>
+                <Collapse bordered={false} defaultActiveKey={['38']}>
+                  <Panel header="4.2.0发布 底层架构升级，分类core模块与starter模块" key="38">
+                    <div>1.[升级]SpringBoot 至 3.2.9</div>
+                    <div>2.[升级]SpringCloud 至 2023.0.3</div>
+                    <div>3.[升级]底层架构升级，分类core模块与starter模块</div>
+                    <div>4.[新增]Geo坐标工具</div>
+                    <div>5.[新增]JsonUtil新增readListMap方法</div>
+                    <div>6.[优化]将user模块合并至system模块，统一api入口</div>
+                    <div>7.[修复]vue3版本报表列表跳转路径出错的问题</div>
+                    <div>8.[修复]excel导出工具类版本冲突的问题</div>
+                  </Panel>
                   <Panel header="4.1.0发布 登录认证升级国密算法，数据库password字段无需变动" key="37">
                     <div>1.[升级]SpringBoot 至 3.2.7</div>
                     <div>2.[升级]SpringCloud 至 2023.0.2</div>
