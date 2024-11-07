@@ -212,7 +212,24 @@ class Workplace extends PureComponent {
             </Row>
             <Row gutter={24}>
               <Card className={styles.card} bordered={false}>
-                <Collapse bordered={false} defaultActiveKey={['38']}>
+                <Collapse bordered={false} defaultActiveKey={['39']}>
+                  <Panel header="4.3.0发布 多租户支持线程模式指定租户ID与忽略租户" key="39">
+                    <div>1.[升级]SpringBoot 至 6.1.14</div>
+                    <div>2.[升级]SpringBoot 至 3.2.10</div>
+                    <div>3.[升级]SpringCloud 至 2023.0.3</div>
+                    <div>4.[升级]SpringCloud Alibaba 至 2023.0.1.2</div>
+                    <div>5.[升级]MybatisPlus 至 3.5.8</div>
+                    <div>6.[升级]Nacos 至 2.4.3</div>
+                    <div>7.[新增]blade-starter-tenant</div>
+                    <div>8.[新增]blade-starter-cache</div>
+                    <div>9.[新增]TenantUtil支持租户指定与忽略</div>
+                    <div>10.[新增]添加模块名，架构模块化</div>
+                    <div>11.[优化]代码生成器字段</div>
+                    <div>12.[优化]历史工具类逻辑</div>
+                    <div>13.[优化]调整BladeApplication参数顺序</div>
+                    <div>14.[优化]调整copyright维护日期</div>
+                    <div>15.[优化]调整copyright联系邮箱</div>
+                  </Panel>
                   <Panel header="4.2.0发布 底层架构升级，分类core模块与starter模块" key="38">
                     <div>1.[升级]SpringBoot 至 3.2.9</div>
                     <div>2.[升级]SpringCloud 至 2023.0.3</div>
