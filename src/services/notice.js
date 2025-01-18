@@ -16,7 +16,7 @@ export async function remove(params) {
   return request('/api/blade-desk/notice/remove', {
     method: 'POST',
     body: func.toFormData(params),
-    cryptoToken: true,
+    cryptoToken: false,
   });
 }
 
@@ -24,7 +24,7 @@ export async function submit(params) {
   return request('/api/blade-desk/notice/submit', {
     method: 'POST',
     body: params,
-    cryptoToken: true,
+    cryptoToken: false,
   });
 }
 

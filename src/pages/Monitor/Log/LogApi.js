@@ -109,7 +109,7 @@ class LogApi extends PureComponent {
           loading={loading}
           data={apiData}
           columns={columns}
-          pkField="strId"
+          pkField="id"
         />
       </Panel>
     );

@@ -109,7 +109,7 @@ class LogUsual extends PureComponent {
           loading={loading}
           data={usualData}
           columns={columns}
-          pkField="strId"
+          pkField="id"
         />
       </Panel>
     );
