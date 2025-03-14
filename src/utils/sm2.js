@@ -1,4 +1,4 @@
-import { sm2 } from 'sm-crypto';
+import smCrypto from 'sm-crypto';
 import { auth } from '../defaultSettings';
 
 
@@ -9,7 +9,7 @@ import { auth } from '../defaultSettings';
  */
 export default function encrypt(data) {
   try {
-    return sm2.doEncrypt(data, auth.publicKey, 0);
+    return smCrypto.sm2.doEncrypt(data, auth.publicKey, 0);
   } catch {
     return '';
   }
